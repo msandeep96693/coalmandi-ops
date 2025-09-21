@@ -22,21 +22,22 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import pageobject.createaccountpage;
-import pageobject.createlistingpage;
-import pageobject.signinpage;
+import customerpageobject.opssigninpage;
+import customerpageobject.opsteammanagementpage;
 
 
-public class Baseclass {
+
+public class opsBaseclass {
 	
 	public Properties prop;
 	public WebDriver driver;
-	public signinpage sign;
-	public createaccountpage account;
-	public createlistingpage createlist;
+	
+	// ops 
+	public opssigninpage opssign;
+	public opsteammanagementpage team;
 	
 	
-	public Baseclass() { 
+	public opsBaseclass() { 
 		try {
 			prop = new Properties();
 			FileInputStream ip = new FileInputStream(System.getProperty("user.dir")+ "//src//test//resources//config.properties");

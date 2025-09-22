@@ -1,5 +1,5 @@
 
-package customerpageobject;
+package opspageobject;
 
 import java.time.Duration;
 import java.util.List;

@@ -1,4 +1,4 @@
-package customerpageobject;
+package opspageobject;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -46,6 +46,16 @@ public class opsteammanagementpage extends opsBasicpage {
 	
 	// Team member list page
 	
+	@FindBy(xpath = "//input[@placeholder='Search by name, email']")
+	private WebElement searchtextfield;
+	
+	@FindBy(xpath = "//input[@type='search']")
+	private List<WebElement> searchandfilterfield;
+	
+	@FindBy(xpath = "//div[@class='rc-virtual-list-holder-inner']/div")
+	private List<WebElement> allstatusfilter;
+	
+	
 	
 	
 	public void opscreateteammanagement(String email, String pwd, String sidebarfeaturename, String fullname, String emailID, String phonenumber) throws InterruptedException
@@ -80,6 +90,22 @@ public class opsteammanagementpage extends opsBasicpage {
 		
 	}
 	
+	
+	public void listteammanagement(String email, String pwd, String sidebarfeaturename, String emailsearchdata) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(email, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidebarfeaturename);
+		Thread.sleep(3000);
+		
+		// search a textfield
+		waitforElement(searchtextfield);
+		searchtextfield.sendKeys(emailsearchdata);
+		
+		Thread.sleep(3000);
+	}
 	
 	
 	public void ClickAction(String btn) {

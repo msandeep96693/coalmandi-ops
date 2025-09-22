@@ -3,7 +3,7 @@ package opsTestcaseExecution;
 import org.testng.annotations.Test;
 
 import Basepackage.opsBaseclass;
-import customerpageobject.opssigninpage;
+import opspageobject.opssigninpage;
 
 public class opssigninExecustionclass extends opsBaseclass {
 	

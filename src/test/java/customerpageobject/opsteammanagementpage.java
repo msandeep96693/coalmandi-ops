@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class opsteammanagementpage extends opsBasicpage{
+public class opsteammanagementpage extends opsBasicpage {
 	
 	public opsteammanagementpage(WebDriver driver) 
 	{
@@ -25,25 +25,62 @@ public class opsteammanagementpage extends opsBasicpage{
 	@FindBy(xpath = "//span[.='Add Team Member']/..")
 	private WebElement addteammemberbtn;
 	
+	@FindBy(xpath = "//input[@placeholder='Enter full name']")
+	private WebElement enterfullnamefield;
+	
+	@FindBy(xpath = "//input[@placeholder='Enter email address']")
+	private WebElement enteremailaddressfield;
+	
+	@FindBy(xpath = "//input[@placeholder='Enter phone number']")
+	private WebElement enterphonenumberfield;
+	
+	@FindBy(xpath = "//span[.='Create Team Member']/..")
+	private WebElement clickoncreateteammemberbtn;
+	
 	@FindBy(xpath = "//span[.='View Details']/..")
 	private List<WebElement> viewdetailsbuttons;
 	
-	public void opsteammanagement(String email, String pwd) throws InterruptedException
+	// Edit ops team member
+	
+	
+	
+	// Team member list page
+	
+	
+	
+	public void opscreateteammanagement(String email, String pwd, String sidebarfeaturename, String fullname, String emailID, String phonenumber) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
 		
 		// select the left nav bar features by name
-		ClickAction("team");
+		ClickAction(sidebarfeaturename);
 		Thread.sleep(3000);
 		
 		// click on add team member button
 		waitforElement(addteammemberbtn);
 		javascriptclick(addteammemberbtn);
 		
-		Thread.sleep(3000);
+		// enter a full name
+		waitforElement(enterfullnamefield);
+		enterfullnamefield.sendKeys(fullname);
+		
+		// enter a email ID
+		waitforElement(enteremailaddressfield);
+		enteremailaddressfield.sendKeys(emailID);
+		
+		// enter a phone number
+		waitforElement(enterphonenumberfield);
+		enterphonenumberfield.sendKeys(phonenumber);
+		
+		// click on create team member button
+		waitforElement(clickoncreateteammemberbtn);
+		javascriptclick(clickoncreateteammemberbtn);
+		
 		
 	}
+	
+	
 	
 	public void ClickAction(String btn) {
 	    switch(btn.toLowerCase()) {

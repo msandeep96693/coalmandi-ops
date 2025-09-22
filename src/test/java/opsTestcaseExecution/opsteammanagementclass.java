@@ -11,7 +11,10 @@ public class opsteammanagementclass extends opsBaseclass {
 	public void Teammanagementpage() throws InterruptedException
 	{
 		team = new opsteammanagementpage(driver);
-		team.opsteammanagement(prop.getProperty("opsemail"), prop.getProperty("password"));
+		team.opscreateteammanagement(prop.getProperty("opsemail"), prop.getProperty("password"),
+				prop.getProperty("sidebarfeaturename"), prop.getProperty("fullname"),
+				prop.getProperty("emailID"), prop.getProperty("phonenumber"));
 	}
-
+	
+	
 }

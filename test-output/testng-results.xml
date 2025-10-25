@@ -2,31 +2,31 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-22T21:38:44 IST" name="Default suite" finished-at="2025-09-22T21:39:01 IST" duration-ms="17841">
+  <suite started-at="2025-10-18T22:56:43 IST" name="Default suite" finished-at="2025-10-18T22:56:56 IST" duration-ms="13118">
     <groups>
     </groups>
-    <test started-at="2025-09-22T21:38:44 IST" name="Default test" finished-at="2025-09-22T21:39:01 IST" duration-ms="17841">
-      <class name="opsTestcaseExecution.opsteammanagementclass">
-        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opsteammanagementclass@587e5365]" started-at="2025-09-22T21:38:44 IST" name="setup" finished-at="2025-09-22T21:38:49 IST" duration-ms="5706" status="PASS">
+    <test started-at="2025-10-18T22:56:43 IST" name="Default test" finished-at="2025-10-18T22:56:56 IST" duration-ms="13118">
+      <class name="opsTestcaseExecution.opssigninExecustionclass">
+        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opssigninExecustionclass@4009e306]" started-at="2025-10-18T22:56:43 IST" name="setup" finished-at="2025-10-18T22:56:54 IST" duration-ms="11140" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="listteammanagement()[pri:0, instance:opsTestcaseExecution.opsteammanagementclass@587e5365]" started-at="2025-09-22T21:38:49 IST" name="listteammanagement" finished-at="2025-09-22T21:39:01 IST" duration-ms="11705" status="PASS">
+        <test-method signature="opssignin()[pri:0, instance:opsTestcaseExecution.opssigninExecustionclass@4009e306]" started-at="2025-10-18T22:56:55 IST" name="opssignin" finished-at="2025-10-18T22:56:56 IST" duration-ms="1061" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- listteammanagement -->
-        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opsteammanagementclass@587e5365]" started-at="2025-09-22T21:39:01 IST" name="tear" finished-at="2025-09-22T21:39:01 IST" duration-ms="336" status="PASS">
+        </test-method> <!-- opssignin -->
+        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opssigninExecustionclass@4009e306]" started-at="2025-10-18T22:56:56 IST" name="tear" finished-at="2025-10-18T22:56:56 IST" duration-ms="817" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=listteammanagement status=SUCCESS method=opsteammanagementclass.listteammanagement()[pri:0, instance:opsTestcaseExecution.opsteammanagementclass@587e5365] output={null}]]]>
+                <![CDATA[[TestResult name=opssignin status=SUCCESS method=opssigninExecustionclass.opssignin()[pri:0, instance:opsTestcaseExecution.opssigninExecustionclass@4009e306] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tear -->
-      </class> <!-- opsTestcaseExecution.opsteammanagementclass -->
+      </class> <!-- opsTestcaseExecution.opssigninExecustionclass -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

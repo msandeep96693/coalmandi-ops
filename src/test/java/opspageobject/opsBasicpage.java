@@ -5,6 +5,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -92,6 +93,26 @@ public class opsBasicpage
 		js.executeScript("arguments[0].click();", element );
 	}
 	
+	public void selectDropdownOption(List<WebElement> dropdownOptions, String optionName) {
+	    boolean found = false;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfAllElements(dropdownOptions));
+
+		
+	    for (WebElement option : dropdownOptions) {
+	    	System.out.println("option name :- "+ option.getText());
+	    	
+	        if (option.getText().equalsIgnoreCase(optionName)) {
+	            javascriptclick(option);
+	            found = true;
+	            break;
+	        }
+	    }
+
+	    if (!found) {
+	        System.out.println("Option not found: " + optionName);
+	    }
+	}
 	
 	// --------------------------------------------------------------------------------
 	
@@ -111,5 +132,28 @@ public class opsBasicpage
         }
     }
 	
+	public String setRandomBusinessName()
+	   {
+		 String randomstring=RandomStringUtils.random(4,"abcdefghijklmnopqrstuvwxyz");
+		 return "Remember me"+randomstring;
+	   }
+	
+	 public String setRandomName()
+	   {
+		 String randomstring=RandomStringUtils.random(3,"abcdefghijklmnopqrstuvwxyz");
+		 return "Sandeep"+randomstring;
+	   }
+	 
+	 public String setRandomEmail()
+	   {
+		 String randomstring=RandomStringUtils.random(3,"abcdefghijklmnopqrstuvwxyz");
+		 return "sandeep"+"+QA"+randomstring+"@rokkun.io";
+	   }
+	 
+	 public String setRandomMobileNumber()
+	   {
+		  String randomnumeric=RandomStringUtils.randomNumeric(6);
+		  return "9620"+randomnumeric;
+	   }
 	
 }

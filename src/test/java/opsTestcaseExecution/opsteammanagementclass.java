@@ -7,13 +7,20 @@ import opspageobject.opsteammanagementpage;
 
 public class opsteammanagementclass extends opsBaseclass {
 	
-	//@Test
+//	@Test
 	public void Teammanagementpage() throws InterruptedException
 	{
 		team = new opsteammanagementpage(driver);
 		team.opscreateteammanagement(prop.getProperty("opsemail"), prop.getProperty("password"),
-				prop.getProperty("sidebarfeaturename"), prop.getProperty("fullname"),
-				prop.getProperty("emailID"), prop.getProperty("phonenumber"));
+				prop.getProperty("sidebarteamname"));
+	}
+	
+//	@Test
+	public void updateteammember() throws InterruptedException
+	{
+		team = new opsteammanagementpage(driver);
+		team.opsupdateteammember(prop.getProperty("opsemail"), prop.getProperty("password"),
+				prop.getProperty("sidebarteamname"));
 	}
 	
 	@Test
@@ -21,7 +28,8 @@ public class opsteammanagementclass extends opsBaseclass {
 	{
 		team = new opsteammanagementpage(driver);
 		team.listteammanagement(prop.getProperty("opsemail"), prop.getProperty("password"),
-				prop.getProperty("sidebarteamname"), prop.getProperty("emailsearchdata"));
+				prop.getProperty("sidebarteamname"), prop.getProperty("emailsearchdata"),
+				prop.getProperty("statusoptionname"));
 	}
 	
 }

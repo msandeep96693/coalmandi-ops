@@ -21,8 +21,14 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
 		customer.opscustomerprofileassignfunctionality(prop.getProperty("opsemail"), prop.getProperty("password"),
-				prop.getProperty("sidebarcustmgmtname"));
+				prop.getProperty("sidebarcustmgmtname"), prop.getProperty("opsexecutivename"));
 	}
 	
-	
+	@Test
+	public void customermanagementrequesttorejectflow() throws InterruptedException
+	{
+		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
+		customer.customermanagementrequesttorejectactionpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
+				prop.getProperty("approvedoverridetext"));
+	}
 }

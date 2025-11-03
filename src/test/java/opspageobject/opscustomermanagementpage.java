@@ -87,17 +87,21 @@ public class opscustomermanagementpage extends opsBasicpage {
 	@FindBy(xpath = "(//button[.='View'])[1]")
 	private WebElement viewbtn;
 	
+	@FindBy(xpath = "//button[.='Approve']")
+	private WebElement approvebtn;
+	
+	@FindBy(xpath = "//textarea[contains(@placeholder, 'approving despite the rejection')]")
+	private WebElement overrideapprovetextarea;
+	
+	@FindBy(xpath = "//button[.='Approve with Override']")
+	private WebElement approvewithoverridebtn;
+	
 	
 	@FindBy(xpath="//div[@class='w-full']/div[2]//span[text()='Pending KYC Approval']/../../div[2]/div//div/div/div/div/div") 
 	private List<WebElement> cardpendingKycApprovel;
 	
 	@FindBy(xpath="//div[@class='w-full']/div[2]//span[text()='Rejected KYC']/../../div[2]/div")         
 	private List<WebElement> cardRejectedKyc;
-	
-	
-	
-
-	
 	
 	
 	public void customermanagementactivitypage(String email, String pwd, String sidenavbarname) throws InterruptedException
@@ -159,7 +163,8 @@ public class opscustomermanagementpage extends opsBasicpage {
 		}
 	
 	
-	public void opscustomerprofileassignfunctionality(String email, String pwd, String sidenavbarname) throws AWTException, InterruptedException
+	public void opscustomerprofileassignfunctionality(String email, String pwd, String sidenavbarname,
+			String opsexecutivename) throws AWTException, InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
@@ -172,7 +177,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 		javascriptclick(activitiessubbtn);
 				
 //		click on pending KYC approval
-		ClickOnApprovalFiles(1);
+		ClickOnApprovalFiles(0);
 		
 		Thread.sleep(4000);
 				
@@ -187,7 +192,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 		
 		Thread.sleep(2000);
 		waitforElement(searchtextfield);
-		searchtextfield.sendKeys("sandeep");
+		searchtextfield.sendKeys(opsexecutivename);
 		
 		Robot rt = new Robot();
 		rt.keyPress(KeyEvent.VK_ENTER);
@@ -195,10 +200,6 @@ public class opscustomermanagementpage extends opsBasicpage {
 		
 		waitforElement(assignbutton2);
 		javascriptclick(assignbutton2);
-		
-//		waitforElement(successconfirmationmessage);
-//		String confirmationmsg = successconfirmationmessage.getText();
-//		System.out.println("Created confirmation message :- "+ confirmationmsg);
 		
 		waitforElement(assignedtosubbtn);
 		javascriptclick(assignedtosubbtn);
@@ -224,11 +225,42 @@ public class opscustomermanagementpage extends opsBasicpage {
 		waitforElement(opslogout);
 		javascriptclick(opslogout);
 		
-		
 	}
 	
 	
-	
+	public void customermanagementrequesttorejectactionpage(String email, String pwd,
+			String approveddata ) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(email, pwd);
+		
+		// select the left nav bar features by name
+		waitforElement(rejectionrequestsubbtn);
+		javascriptclick(rejectionrequestsubbtn);
+		
+		String url = driver.getCurrentUrl();
+		System.out.println("URL :- "+ url);
+		
+		// actions are pending
+		
+		scrollBottomofPage();
+		
+		waitforElement(approvebtn);
+		javascriptclick(approvebtn);
+		
+		waitforElement(overrideapprovetextarea);
+		overrideapprovetextarea.sendKeys(approveddata);
+		
+		waitforElement(approvewithoverridebtn);
+		javascriptclick(approvewithoverridebtn);
+		
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+		
+		}
 	
 	
 	

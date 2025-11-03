@@ -2,6 +2,8 @@
 package opspageobject;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
@@ -113,6 +115,16 @@ public class opsBasicpage
 	        System.out.println("Option not found: " + optionName);
 	    }
 	}
+	
+	public String currentdatefetch()
+	{
+		LocalDate currentDate = LocalDate.now();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy");
+	    String formattedDate = currentDate.format(formatter);
+	    System.out.println(formattedDate);
+		return formattedDate;
+	}
+	
 	
 	// --------------------------------------------------------------------------------
 	

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="opsTestcaseExecution.opscustomermanagementExecutionclass">
+      <class name="opsTestcaseExecution.opslistingmanagementExecutionclass">
         <methods>
-          <include name="customermanagementassignflow"/>
           <include name="setup"/>
+          <include name="listingmanagementassign"/>
           <include name="tear"/>
         </methods>
-      </class> <!-- opsTestcaseExecution.opscustomermanagementExecutionclass -->
+      </class> <!-- opsTestcaseExecution.opslistingmanagementExecutionclass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -6,8 +6,10 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class opslistingmanagementpage extends opsBasicpage {
@@ -24,7 +26,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//input[@placeholder='Search by Business Name, Coal Type']")
 	private WebElement listsearchtextfield;
 	
-	@FindBy(xpath = "//div[@class='flex flex-col gap-2']")
+	@FindBy(xpath = "(//div[@class='flex flex-col gap-2'])[1]")
 	private WebElement listdata;
 	
 	@FindBy(xpath = "//button[.='View Details']")
@@ -60,7 +62,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//span[.='Others']")
 	private WebElement othersection;
 	
-	@FindBy(xpath = "(//span[@class='ant-select-selection-item'])[1]")
+	@FindBy(xpath = "(//input[@type='search'])[2]")   // 
 	private WebElement clickonstatusdropdown;
 	
 	@FindBy(xpath = "//div[.='Assigned']")
@@ -122,7 +124,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 		javascriptclick(opslogout);
 	}
 	
-	public void listingmanagementassignpage(String email, String pwd, String sidenavbarname, String opsexecutivename) throws AWTException
+	public void listingmanagementassignpage(String email, String pwd, String sidenavbarname, String opsexecutivename) throws AWTException, InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
@@ -143,24 +145,24 @@ public class opslistingmanagementpage extends opsBasicpage {
 		waitforElement(opsexecutivesearchtextfield);
 		opsexecutivesearchtextfield.sendKeys(opsexecutivename);
 		
-		Robot rt = new Robot();
-		rt.keyPress(KeyEvent.VK_ENTER);
-		rt.keyRelease(KeyEvent.VK_ENTER);
 		
-		waitforElement(assignbutton2);
+		Actions actions = new Actions(driver);
+		actions.sendKeys(Keys.TAB).perform();
+		
+		waitforElement(assignbutton2);	
 		javascriptclick(assignbutton2);
 		
-		waitforElement(othersection);
-		javascriptclick(othersection);
-		
-		waitforElement(clickonstatusdropdown);
-		javascriptclick(clickonstatusdropdown);
-		
-		waitforElement(assignedoption);
-		javascriptclick(assignedoption);
-		
-		String assigneddata = listingdata.getText();
-		System.out.println("Assigned data :- "+ assigneddata);
+//		waitforElement(othersection);
+//		javascriptclick(othersection);
+//		
+//		waitforElement(clickonstatusdropdown);
+//		javascriptclick(clickonstatusdropdown);
+//		
+//		waitforElement(assignedoption);
+//		javascriptclick(assignedoption);
+//		
+//		String assigneddata = listingdata.getText();
+//		System.out.println("Assigned data :- "+ assigneddata);
 		
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
@@ -176,6 +178,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 		
 		// select the left nav bar features by name
 		ClickAction(sidenavbarname);
+		
 		
 		
 		

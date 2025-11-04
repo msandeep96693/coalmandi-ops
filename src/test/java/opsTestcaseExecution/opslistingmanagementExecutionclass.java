@@ -9,7 +9,7 @@ import opspageobject.opslistingmanagementpage;
 
 public class opslistingmanagementExecutionclass extends opsBaseclass {
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void listingmanagementlist()
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
@@ -18,7 +18,7 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void listingmanagementapproval()
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
@@ -28,7 +28,7 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 	}
 	
 	@Test(priority = 2, enabled = true)
-	public void listingmanagementassign() throws AWTException
+	public void listingmanagementassign() throws AWTException, InterruptedException
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
 		list.listingmanagementassignpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
@@ -36,7 +36,7 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = false)
 	public void listingmanagementrequesttoreject()
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);

@@ -1,83 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-04T09:50:03 IST" name="Default suite" finished-at="2025-11-04T09:50:52 IST" duration-ms="48993">
+  <suite started-at="2025-11-05T22:37:28 IST" name="Default suite" finished-at="2025-11-05T22:37:44 IST" duration-ms="15613">
     <groups>
     </groups>
-    <test started-at="2025-11-04T09:50:03 IST" name="Default test" finished-at="2025-11-04T09:50:52 IST" duration-ms="48993">
-      <class name="opsTestcaseExecution.opslistingmanagementExecutionclass">
-        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opslistingmanagementExecutionclass@3bb9a3ff]" started-at="2025-11-04T09:50:03 IST" name="setup" finished-at="2025-11-04T09:50:07 IST" duration-ms="3032" status="PASS">
+    <test started-at="2025-11-05T22:37:28 IST" name="Default test" finished-at="2025-11-05T22:37:44 IST" duration-ms="15613">
+      <class name="opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass">
+        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@587e5365]" started-at="2025-11-05T22:37:28 IST" name="setup" finished-at="2025-11-05T22:37:32 IST" duration-ms="3525" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="listingmanagementassign()[pri:2, instance:opsTestcaseExecution.opslistingmanagementExecutionclass@3bb9a3ff]" started-at="2025-11-04T09:50:07 IST" name="listingmanagementassign" finished-at="2025-11-04T09:50:42 IST" duration-ms="35298" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (500335fa09f8702e211aaa262abb5f64)] -> xpath: (//input[@type='search'])[2]] (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.8.0-86-generic', java.version: '21.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 140.0.7339.185, chrome: {chromedriverVersion: 140.0.7339.207 (17230b545fd..., userDataDir: /tmp/.org.chromium.Chromium...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:38253}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:38253/devtoo..., se:cdpVersion: 140.0.7339.185, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 500335fa09f8702e211aaa262abb5f64]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (500335fa09f8702e211aaa262abb5f64)] -> xpath: (//input[@type='search'])[2]] (tried for 30 second(s) with 500 milliseconds interval)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '6.8.0-86-generic', java.version: '21.0.1'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 140.0.7339.185, chrome: {chromedriverVersion: 140.0.7339.207 (17230b545fd..., userDataDir: /tmp/.org.chromium.Chromium...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:38253}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:38253/devtoo..., se:cdpVersion: 140.0.7339.185, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 500335fa09f8702e211aaa262abb5f64
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at Utilities.waitHelper.waitElementHelper(waitHelper.java:29)
-at opspageobject.opsBasicpage.waitforElement(opsBasicpage.java:37)
-at opspageobject.opslistingmanagementpage.listingmanagementassignpage(opslistingmanagementpage.java:162)
-at opsTestcaseExecution.opslistingmanagementExecutionclass.listingmanagementassign(opslistingmanagementExecutionclass.java:34)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+        <test-method signature="closeticketpage()[pri:0, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@587e5365]" started-at="2025-11-05T22:37:32 IST" name="closeticketpage" finished-at="2025-11-05T22:37:43 IST" duration-ms="11693" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- listingmanagementassign -->
-        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opslistingmanagementExecutionclass@3bb9a3ff]" started-at="2025-11-04T09:50:42 IST" name="tear" finished-at="2025-11-04T09:50:52 IST" duration-ms="10598" status="PASS">
+        </test-method> <!-- closeticketpage -->
+        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@587e5365]" started-at="2025-11-05T22:37:43 IST" name="tear" finished-at="2025-11-05T22:37:44 IST" duration-ms="302" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=listingmanagementassign status=FAILURE method=opslistingmanagementExecutionclass.listingmanagementassign()[pri:2, instance:opsTestcaseExecution.opslistingmanagementExecutionclass@3bb9a3ff] output={null}]]]>
+                <![CDATA[[TestResult name=closeticketpage status=SUCCESS method=opsticketmanagementcloseticketExecutionclass.closeticketpage()[pri:0, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@587e5365] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tear -->
-      </class> <!-- opsTestcaseExecution.opslistingmanagementExecutionclass -->
+      </class> <!-- opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

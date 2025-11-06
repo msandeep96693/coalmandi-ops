@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass">
+      <class name="opsTestcaseExecution.opslistingmanagementExecutionclass">
         <methods>
           <include name="setup"/>
-          <include name="Assignticketpage"/>
+          <include name="listingmanagementrequesttoreject"/>
           <include name="tear"/>
         </methods>
-      </class> <!-- opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass -->
+      </class> <!-- opsTestcaseExecution.opslistingmanagementExecutionclass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

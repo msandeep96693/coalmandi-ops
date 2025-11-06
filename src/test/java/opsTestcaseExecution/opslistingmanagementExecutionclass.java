@@ -19,7 +19,7 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 	}
 	
 	@Test(priority = 1, enabled = false)
-	public void listingmanagementapproval()
+	public void listingmanagementapproval() throws InterruptedException
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
 		list.listingmanagementapprovalpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
@@ -27,7 +27,18 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
-	@Test(priority = 2, enabled = true)
+	
+	
+	@Test(priority = 1, enabled = false)
+	public void listingmanagementrequesttorejctexecutive() throws InterruptedException
+	{
+		opslistingmanagementpage list = new opslistingmanagementpage(driver);
+		list.listingmanagementexecutiverejectpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
+				prop.getProperty("sidebarlistingname"));
+		
+	}
+	
+	@Test(priority = 2, enabled = false)
 	public void listingmanagementassign() throws AWTException, InterruptedException
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
@@ -36,13 +47,15 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
-	@Test(priority = 3, enabled = false)
-	public void listingmanagementrequesttoreject()
+	@Test(priority = 3, enabled = true)
+	public void listingmanagementrequesttoreject() throws InterruptedException
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
 		list.listingmanagementrequesttorejectpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
 				prop.getProperty("sidebarlistingname"));
 		
 	}
+	
+	
 
 }

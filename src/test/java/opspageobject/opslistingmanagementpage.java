@@ -71,6 +71,21 @@ public class opslistingmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "((//div[@class='w-full']/div[2]/div/div/div)[1]/div)[1]")
 	private WebElement listingdata;
 	
+	@FindBy(xpath = "//button[.='Request To Reject']")
+	private WebElement requesttorejectbtn;
+	
+	@FindBy(xpath = "(((//div[@class='overflow-hidden'])[2]/div)[2]/div/div)[2]/button/span")
+	private WebElement requesttorejectviewbtn;
+	
+	@FindBy(xpath = "//button[.='Rejection with Reason']")
+	private WebElement rejectionwithreasonbtn;
+	
+	@FindBy(xpath = "//textarea")
+	private WebElement rejectionreasontextarea;
+	
+	@FindBy(xpath = "//button[.='Submit Rejection']")
+	private WebElement submitrejectionbtn;
+	
 	public void listingmanagementlistpage(String email, String pwd, String sidenavbarname, String searchbybusinessname)
 	{
 		opssigninpage opssign = new opssigninpage(driver);
@@ -100,7 +115,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 		
 	}
 	
-	public void listingmanagementapprovalpage(String email, String pwd, String sidenavbarname)
+	public void listingmanagementapprovalpage(String email, String pwd, String sidenavbarname) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
@@ -114,8 +129,9 @@ public class opslistingmanagementpage extends opsBasicpage {
 		
 		scrollBottomofPage();
 		
-		waitforElement(approvebtn);
-		javascriptclick(approvebtn);
+		waitforElement(requesttorejectbtn);
+		javascriptclick(requesttorejectbtn);
+		Thread.sleep(2000);
 		
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
@@ -123,6 +139,31 @@ public class opslistingmanagementpage extends opsBasicpage {
 		waitforElement(opslogout);
 		javascriptclick(opslogout);
 	}
+	
+	public void listingmanagementexecutiverejectpage(String email, String pwd, String sidenavbarname) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(email, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidenavbarname);
+		
+		// pending approval
+//		waitforElement(viewdetailsbtn);
+//		javascriptclick(viewdetailsbtn);
+		
+		waitforElement(requesttorejectviewbtn);
+		javascriptclick(requesttorejectviewbtn);
+		
+		scrollBottomofPage();
+		
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+	}
+	
 	
 	public void listingmanagementassignpage(String email, String pwd, String sidenavbarname, String opsexecutivename) throws AWTException, InterruptedException
 	{
@@ -152,6 +193,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 		waitforElement(assignbutton2);	
 		javascriptclick(assignbutton2);
 		
+		Thread.sleep(2000);		
 //		waitforElement(othersection);
 //		javascriptclick(othersection);
 //		
@@ -171,7 +213,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 		javascriptclick(opslogout);
 	}
 	
-	public void listingmanagementrequesttorejectpage(String email, String pwd, String sidenavbarname)
+	public void listingmanagementrequesttorejectpage(String email, String pwd, String sidenavbarname) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
@@ -179,8 +221,23 @@ public class opslistingmanagementpage extends opsBasicpage {
 		// select the left nav bar features by name
 		ClickAction(sidenavbarname);
 		
+		waitforElement(requesttorejectviewbtn);
+		javascriptclick(requesttorejectviewbtn);
 		
+		scrollBottomofPage();
 		
+		waitforElement(rejectionwithreasonbtn);
+		javascriptclick(rejectionwithreasonbtn);
+		Thread.sleep(2000);
+		
+		waitforElement(rejectionreasontextarea);
+		rejectionreasontextarea.clear();
+		Thread.sleep(1500);
+		rejectionreasontextarea.sendKeys("WE CAN ACCEPT THE LISTING");
+		
+		waitforElement(submitrejectionbtn);
+		javascriptclick(submitrejectionbtn);
+		Thread.sleep(1000);
 		
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);

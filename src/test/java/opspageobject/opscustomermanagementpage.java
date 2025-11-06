@@ -36,7 +36,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 	private WebElement rejectionrequestsubbtn;
 	
 	@FindBy(xpath="//div[@class='w-full']/div[2]//span[text()='Pending KYC Approval']/../../div[2]//button") 
-	private List<WebElement> viewButton;
+	private List<WebElement> viewButton; 
 	
 	@FindBy(xpath="//div[text()='KYC Upload']") 
 	private WebElement KycUploadButton;

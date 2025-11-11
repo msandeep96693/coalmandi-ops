@@ -2,31 +2,31 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-06T22:24:47 IST" name="Default suite" finished-at="2025-11-06T22:24:58 IST" duration-ms="10745">
+  <suite started-at="2025-11-11T16:08:24 IST" name="Default suite" finished-at="2025-11-11T16:12:45 IST" duration-ms="260372">
     <groups>
     </groups>
-    <test started-at="2025-11-06T22:24:47 IST" name="Default test" finished-at="2025-11-06T22:24:58 IST" duration-ms="10745">
-      <class name="opsTestcaseExecution.opstransportmanagementExecutionclass">
-        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opstransportmanagementExecutionclass@43c1b556]" started-at="2025-11-06T22:24:47 IST" name="setup" finished-at="2025-11-06T22:24:51 IST" duration-ms="3602" status="PASS">
+    <test started-at="2025-11-11T16:08:24 IST" name="Default test" finished-at="2025-11-11T16:12:45 IST" duration-ms="260372">
+      <class name="opsTestcaseExecution.opscustomermanagementExecutionclass">
+        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@7c729a55]" started-at="2025-11-11T16:08:24 IST" name="setup" finished-at="2025-11-11T16:08:35 IST" duration-ms="10800" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="createtransportmanagement()[pri:0, instance:opsTestcaseExecution.opstransportmanagementExecutionclass@43c1b556]" started-at="2025-11-06T22:24:51 IST" name="createtransportmanagement" finished-at="2025-11-06T22:24:57 IST" duration-ms="6788" status="PASS">
+        <test-method signature="customermanagementapprovalflow()[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@7c729a55]" started-at="2025-11-11T16:08:35 IST" name="customermanagementapprovalflow" finished-at="2025-11-11T16:12:44 IST" duration-ms="249419" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createtransportmanagement -->
-        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opstransportmanagementExecutionclass@43c1b556]" started-at="2025-11-06T22:24:57 IST" name="tear" finished-at="2025-11-06T22:24:58 IST" duration-ms="262" status="PASS">
+        </test-method> <!-- customermanagementapprovalflow -->
+        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@7c729a55]" started-at="2025-11-11T16:12:44 IST" name="tear" finished-at="2025-11-11T16:12:45 IST" duration-ms="101" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=createtransportmanagement status=SUCCESS method=opstransportmanagementExecutionclass.createtransportmanagement()[pri:0, instance:opsTestcaseExecution.opstransportmanagementExecutionclass@43c1b556] output={null}]]]>
+                <![CDATA[[TestResult name=customermanagementapprovalflow status=SUCCESS method=opscustomermanagementExecutionclass.customermanagementapprovalflow()[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@7c729a55] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tear -->
-      </class> <!-- opsTestcaseExecution.opstransportmanagementExecutionclass -->
+      </class> <!-- opsTestcaseExecution.opscustomermanagementExecutionclass -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

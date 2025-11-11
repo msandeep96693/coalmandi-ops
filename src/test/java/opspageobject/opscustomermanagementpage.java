@@ -296,24 +296,55 @@ public class opscustomermanagementpage extends opsBasicpage {
 	    }
 	}
 
-	public void clickOnCard(String card, String action) throws InterruptedException {
+//	public void clickOnCard(String card, String action) throws InterruptedException {
+//	    WebElement element = getCardElement(card, action);
+//
+//	    if (element != null) {
+//	        try {
+//	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+//	            wait.until(ExpectedConditions.elementToBeClickable(element));
+//	            javascriptclick(element);
+//	            System.out.println("Clicked: " + card + " -> " + action + " ✅");
+//	        } catch (Exception ex) {
+//	            System.out.println("Click failed for: " + card + " -> " + action + " ⛔");
+//	        }
+//	    } else {
+//	        System.out.println("Skipping: " + card + " -> " + action + " ❌");
+//	    }
+//	    
+//	    Thread.sleep(2000); // Give UI time to update
+//	}
+	
+	public void clickOnCard(String card, String action) {
 	    WebElement element = getCardElement(card, action);
 
-	    if (element != null) {
-	        try {
-	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-	            wait.until(ExpectedConditions.elementToBeClickable(element));
-	            javascriptclick(element);
-	            System.out.println("Clicked: " + card + " -> " + action + " ✅");
-	        } catch (Exception ex) {
-	            System.out.println("Click failed for: " + card + " -> " + action + " ⛔");
-	        }
-	    } else {
+	    if (element == null) {
 	        System.out.println("Skipping: " + card + " -> " + action + " ❌");
+	        return;
 	    }
-	    
-	    Thread.sleep(2000); // Give UI time to update
+
+	    try {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+
+	        // Check if element is clickable first
+	        wait.until(ExpectedConditions.or(
+	                ExpectedConditions.elementToBeClickable(element),
+	                ExpectedConditions.visibilityOf(element)
+	        ));
+
+	        javascriptclick(element);  // JS click = fastest & reliable
+	        System.out.println("Clicked: " + card + " -> " + action + " ✅");
+	        
+	    } catch (Exception ex) {
+	        try {
+	            javascriptclick(element); // final retry without waiting
+	            System.out.println("Force clicked: " + card + " -> " + action + " ⚡");
+	        } catch (Exception e) {
+	            System.out.println("Click failed: " + card + " -> " + action + " ⛔");
+	        }
+	    }
 	}
+
 	
 	public void ClickAction(String btn) {
 	    switch(btn.toLowerCase()) {

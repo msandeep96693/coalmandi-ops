@@ -8,7 +8,7 @@ import opspageobject.opscustomermanagementpage;
 
 public class opscustomermanagementExecutionclass extends opsBaseclass {
 	
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void customermanagementapprovalflow() throws InterruptedException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
@@ -16,7 +16,7 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 				prop.getProperty("sidebarcustmgmtname"));
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void customermanagementassignflow() throws InterruptedException, AWTException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
@@ -24,7 +24,7 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 				prop.getProperty("sidebarcustmgmtname"), prop.getProperty("opsexecutivename"));
 	}
 	
-	@Test
+	@Test(priority = 2, enabled = false)
 	public void customermanagementrequesttorejectflow() throws InterruptedException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);

@@ -30,6 +30,12 @@ public class opsvendormanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//button[.='Submit Review']")
 	private WebElement submitreviewbtn;
 	
+	@FindBy(xpath = "(//div[contains(@class,'ant-rate')]//span[@aria-label='star'])[8]")
+	private WebElement selectrating;
+	
+	@FindBy(xpath = "//button[.='Approve with Ratings']")
+	private WebElement approvewithratingbtn;
+	
 	@FindBy(xpath = "//span[.='Approved Vendors']")
 	private WebElement approvedsectionbtn;
 	
@@ -59,7 +65,7 @@ public class opsvendormanagementpage extends opsBasicpage {
 		javascriptclick(activitiessubbtn);
 		
 //		click on pending KYC approval
-		ClickOnApprovalFiles(1);
+		ClickOnApprovalFiles(0);
 		
 		String url = driver.getCurrentUrl();
 		System.out.println("URL :- "+ url);
@@ -75,15 +81,23 @@ public class opsvendormanagementpage extends opsBasicpage {
 		clickOnCard("TAN Certificate", "Accept");
 		clickOnCard("LUT Certificate", "Accept");
 		clickOnCard("Cancelled Cheque", "Accept");
-		clickOnCard(" Udyam Certificate (MSME)", "Accept");
-		clickOnCard("IEC Certificate", "Accept");
-		clickOnCard("D&B Certificate", "Accept");
+//		clickOnCard(" Udyam Certificate (MSME)", "Accept");
+//		clickOnCard("IEC Certificate", "Accept");
+//		clickOnCard("D&B Certificate", "Accept");
 		
 		
 		
 		waitforElement(submitreviewbtn);
 		javascriptclick(submitreviewbtn);
 		
+		waitforElement(selectrating);
+		javascriptclick(selectrating);
+		
+		waitforElement(approvewithratingbtn);
+		javascriptclick(approvewithratingbtn);
+		
+		
+		Thread.sleep(500);
 		waitforElement(approvedsectionbtn);
 		javascriptclick(approvedsectionbtn);
 		

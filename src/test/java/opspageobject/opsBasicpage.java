@@ -71,6 +71,12 @@ public class opsBasicpage
 		//element.click();
 	}
 	
+	public void Hiddenelement(WebElement element)
+	{
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].style.display='block';",element);
+	}
+	
 	public void scrollBottomofPage()
 	{
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -95,23 +101,27 @@ public class opsBasicpage
 		js.executeScript("arguments[0].click();", element );
 	}
 	
-	public void selectDropdownOption(List<WebElement> dropdownOptions, String optionName) {
+	public void selectDropdownOption(List<WebElement> dropdownOptions, String optionName) throws InterruptedException 
+	{
 	    boolean found = false;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfAllElements(dropdownOptions));
 
-		
-	    for (WebElement option : dropdownOptions) {
+	    for (WebElement option : dropdownOptions) 
+	    {
 	    	System.out.println("option name :- "+ option.getText());
 	    	
-	        if (option.getText().equalsIgnoreCase(optionName)) {
-	            javascriptclick(option);
+	        if (option.getText().equalsIgnoreCase(optionName) || option.getText().contains(optionName)) 
+	        {
+//	            javascriptclick(option);
+	        	option.click();
 	            found = true;
 	            break;
 	        }
 	    }
 
-	    if (!found) {
+	    if (!found) 
+	    {
 	        System.out.println("Option not found: " + optionName);
 	    }
 	}

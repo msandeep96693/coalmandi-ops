@@ -16,6 +16,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
@@ -24,6 +25,7 @@ import org.testng.annotations.BeforeMethod;
 
 import opspageobject.opssigninpage;
 import opspageobject.opsteammanagementpage;
+import opspageobject.opstransporterBusinesscreationpage;
 
 
 
@@ -35,6 +37,7 @@ public class opsBaseclass {
 	// ops 
 	public opssigninpage opssign;
 	public opsteammanagementpage team;
+	public opstransporterBusinesscreationpage Transporterprofile;
 	
 	
 	public opsBaseclass() { 
@@ -57,7 +60,9 @@ public class opsBaseclass {
 		
 		if(Browsername.equalsIgnoreCase("chrome"))
 		{
-			driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--start-maximized");
+			driver = new ChromeDriver(options);
 		} 
 		else if (Browsername.equalsIgnoreCase("firefox"))
 		{

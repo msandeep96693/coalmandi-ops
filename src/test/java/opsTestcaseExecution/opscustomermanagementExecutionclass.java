@@ -8,11 +8,19 @@ import opspageobject.opscustomermanagementpage;
 
 public class opscustomermanagementExecutionclass extends opsBaseclass {
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void customermanagementapprovalflow() throws InterruptedException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
 		customer.customermanagementactivitypage(prop.getProperty("opsemail"), prop.getProperty("password"), 
+				prop.getProperty("sidebarcustmgmtname"));
+	}
+	
+	@Test(priority = 0, enabled = false)
+	public void customermanagementopsexecutiveapprovalflow() throws InterruptedException
+	{
+		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
+		customer.customermanagementexecuteapprove(prop.getProperty("opsemail"), prop.getProperty("password"), 
 				prop.getProperty("sidebarcustmgmtname"));
 	}
 
@@ -24,7 +32,9 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 				prop.getProperty("sidebarcustmgmtname"), prop.getProperty("opsexecutivename"));
 	}
 	
-	@Test(priority = 2, enabled = false)
+	
+	
+	@Test(priority = 2, enabled = true) 
 	public void customermanagementrequesttorejectflow() throws InterruptedException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);

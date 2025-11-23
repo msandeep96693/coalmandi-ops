@@ -104,6 +104,31 @@ public class opscustomermanagementpage extends opsBasicpage {
 	private List<WebElement> cardRejectedKyc;
 	
 	
+	// ops execute 
+	@FindBy(xpath = "//div[@class='w-full']/div[2]//span[text()='Assigned Profiles']/../../div[2]//button")
+	private List<WebElement> viewbuttonassignedprofiles;
+	
+	@FindBy(xpath = "//button[.='Request To Reject']")
+	private WebElement requesttorejctionbutton;
+	
+	@FindBy(xpath = "//div[@class='w-full']/div[2]//span[text()='Request to Reject']/../../div[2]//button")
+	private List<WebElement> viewbuttonrequesttorejectprofile;
+	
+	@FindBy(xpath = "//button[.='Submit Rejection']")
+	private WebElement submitrejctionbutton;
+	
+	@FindBy(xpath = "//button[.='Customer Management']")
+	private WebElement customermanagementnavbar;
+	
+	@FindBy(xpath = "//div[@class='ant-table-content']/table//tbody//button[.='View']")
+	private WebElement requesttorejectviewbutton;
+	
+	@FindBy(xpath = "//span[.='undo']")   // cross check 
+	private WebElement undobutton;
+	
+	@FindBy(xpath = "//span[.='Accept']")
+	private WebElement acceptbutton;
+	
 	public void customermanagementactivitypage(String email, String pwd, String sidenavbarname) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
@@ -162,6 +187,61 @@ public class opscustomermanagementpage extends opsBasicpage {
 		
 		}
 	
+	public void customermanagementexecuteapprove(String email, String pwd, String sidenavbarname) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(email, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidenavbarname);
+		Thread.sleep(1000);
+		
+		// click on add team member button
+		waitforElement(activitiessubbtn);
+		javascriptclick(activitiessubbtn);
+		
+//		click on pending KYC approval
+		clickOnAssignedprofileviewbutton(0);
+		
+		String url = driver.getCurrentUrl();
+		System.out.println("URL :- "+ url);
+		
+		scrollUntilElementVisible(KycUploadButton);
+		
+		waitforElement(KycUploadButton);
+		javascriptclick(KycUploadButton);
+		
+		clickOnCard("Authorization Letter", "Reject");
+		clickOnCard("PAN Card", "Accept");
+		clickOnCard("GST Certificate", "Accept");
+		clickOnCard("TAN Certificate", "Accept");
+		clickOnCard("LUT Certificate", "Accept");
+		clickOnCard("Cancelled Cheque", "Accept");
+		clickOnCard(" Udyam Certificate (MSME)", "Accept");
+		clickOnCard("IEC Certificate", "Accept");
+		clickOnCard("D&B Certificate", "Accept");
+		
+		waitforElement(requesttorejctionbutton);
+		javascriptclick(requesttorejctionbutton);
+		
+		clickOnrequesttorejectprofileviewbutton(0);
+		
+		for(int i = 0; i< listofapproveddata.size(); i++)
+		{
+			String approveddata = listofapproveddata.get(1).getText();
+			Thread.sleep(1500);
+			System.out.println("Approved data :- "+approveddata);
+			break;
+		}
+		
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+		
+		}
+	
 	
 	public void opscustomerprofileassignfunctionality(String email, String pwd, String sidenavbarname,
 			String opsexecutivename) throws AWTException, InterruptedException
@@ -176,7 +256,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 		waitforElement(activitiessubbtn);
 		javascriptclick(activitiessubbtn);
 				
-//		click on pending KYC approval
+		//click on pending KYC approval
 		ClickOnApprovalFiles(0);
 		
 		Thread.sleep(4000);
@@ -231,8 +311,11 @@ public class opscustomermanagementpage extends opsBasicpage {
 	public void customermanagementrequesttorejectactionpage(String email, String pwd,
 			String approveddata ) throws InterruptedException
 	{
-		opssigninpage opssign = new opssigninpage(driver);
+		opssigninpage opssign = new opssigninpage(driver);	
 		opssign.opssigninpage(email, pwd);
+		
+		waitforElement(customermanagementnavbar);
+		javascriptclick(customermanagementnavbar);
 		
 		// select the left nav bar features by name
 		waitforElement(rejectionrequestsubbtn);
@@ -241,7 +324,16 @@ public class opscustomermanagementpage extends opsBasicpage {
 		String url = driver.getCurrentUrl();
 		System.out.println("URL :- "+ url);
 		
-		// actions are pending
+		waitforElement(requesttorejectviewbutton);
+		javascriptclick(requesttorejectviewbutton);
+		
+
+		
+		waitforElement(KycUploadButton);
+		javascriptclick(KycUploadButton);
+		
+		waitforElement(acceptbutton);
+		javascriptclick(acceptbutton);
 		
 		scrollBottomofPage();
 		
@@ -275,7 +367,26 @@ public class opscustomermanagementpage extends opsBasicpage {
 			   viewButton.get(value).click();
 			   break;
 		   }
-	} 
+	}
+	
+	public void clickOnAssignedprofileviewbutton(int value)
+	{
+		 for(int i = 0; i< viewbuttonassignedprofiles.size(); i++)
+		   {
+			 viewbuttonassignedprofiles.get(value).click();
+			   break;
+		   }
+	}
+	
+	
+	public void clickOnrequesttorejectprofileviewbutton(int value)
+	{
+		 for(int i = 0; i< viewbuttonrequesttorejectprofile.size(); i++)
+		   {
+			 viewbuttonrequesttorejectprofile.get(value).click();
+			   break;
+		   }
+	}
 	
 	public WebElement getCardElement(String cardName, String action) {
 	    try {
@@ -296,6 +407,26 @@ public class opscustomermanagementpage extends opsBasicpage {
 	    }
 	}
 
+//	public void clickOnCard(String card, String action) throws InterruptedException {
+//	    WebElement element = getCardElement(card, action);
+//
+//	    if (element != null) {
+//	        try {
+//	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+//	            wait.until(ExpectedConditions.elementToBeClickable(element));
+//	            javascriptclick(element);
+//	            System.out.println("Clicked: " + card + " -> " + action + " ✅");
+//	        } catch (Exception ex) {
+//	            System.out.println("Click failed for: " + card + " -> " + action + " ⛔");
+//	        }
+//	    } else {
+//	        System.out.println("Skipping: " + card + " -> " + action + " ❌");
+//	    }
+//	    
+//	    Thread.sleep(2000); // Give UI time to update
+//	}
+	
+	
 	public void clickOnCard(String card, String action) throws InterruptedException {
 	    WebElement element = getCardElement(card, action);
 
@@ -305,45 +436,43 @@ public class opscustomermanagementpage extends opsBasicpage {
 	            wait.until(ExpectedConditions.elementToBeClickable(element));
 	            javascriptclick(element);
 	            System.out.println("Clicked: " + card + " -> " + action + " ✅");
+
+	            Thread.sleep(1500); // Allow popup/modal to appear
+
+	            // ---- ADD NEW FUNCTIONALITY ----
+	            if (action.equalsIgnoreCase("Reject")) {
+
+	                // Locate textarea
+//	                WebElement textarea = driver.findElement(By.xpath("//textarea[contains(@formcontrolname,'remarks') or contains(@placeholder,'Reason')]"));
+//	                textarea.sendKeys("Rejecting due to automation test scenario");
+
+	            	waitforElement(rejectionreasontextarea);
+	            	rejectionreasontextarea.sendKeys("Rejecting due to automation test scenario");
+	            	
+	                // Locate Submit Rejection button
+//	                WebElement submitRejectionButton = driver.findElement(By.xpath("//button[contains(text(),'Submit') or contains(text(),'Reject')]"));
+	                
+	            	wait.until(ExpectedConditions.elementToBeClickable(submitrejctionbutton));
+	            	submitrejctionbutton.click(); 
+
+	                System.out.println("Rejection submitted for card: " + card + " ❌");
+
+	            } else if (action.equalsIgnoreCase("Accept")) {
+
+	                // If Accept button already clicked above, no extra UI action needed
+	                System.out.println("Accepted card: " + card + " ✔️");
+	            }
+
 	        } catch (Exception ex) {
 	            System.out.println("Click failed for: " + card + " -> " + action + " ⛔");
 	        }
 	    } else {
 	        System.out.println("Skipping: " + card + " -> " + action + " ❌");
 	    }
-	    
+
 	    Thread.sleep(2000); // Give UI time to update
 	}
-	
-//	public void clickOnCard(String card, String action) {
-//	    WebElement element = getCardElement(card, action);
-//
-//	    if (element == null) {
-//	        System.out.println("Skipping: " + card + " -> " + action + " ❌");
-//	        return;
-//	    }
-//
-//	    try {
-//	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-//
-//	        // Check if element is clickable first
-//	        wait.until(ExpectedConditions.or(
-//	                ExpectedConditions.elementToBeClickable(element),
-//	                ExpectedConditions.visibilityOf(element)
-//	        ));
-//
-//	        javascriptclick(element);  // JS click = fastest & reliable
-//	        System.out.println("Clicked: " + card + " -> " + action + " ✅");
-//	        
-//	    } catch (Exception ex) {
-//	        try {
-//	            javascriptclick(element); // final retry without waiting
-//	            System.out.println("Force clicked: " + card + " -> " + action + " ⚡");
-//	        } catch (Exception e) {
-//	            System.out.println("Click failed: " + card + " -> " + action + " ⛔");
-//	        }
-//	    }
-//	}
+
 
 	
 	public void ClickAction(String btn) {

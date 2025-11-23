@@ -32,6 +32,12 @@ public class opslistingmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//button[.='View Details']")
 	private WebElement viewdetailsbtn;
 	
+	@FindBy(xpath = "//div[@class='w-full ']/div[2]//span[.='Pending Approval']/../../div[2]//button")
+	private List<WebElement> viewdetailsbutton;
+	
+	@FindBy(xpath = "//button[.='Approve']")
+	private WebElement approvebutton;
+	
 	@FindBy(xpath = "//span[@class='text-sm font-medium text-white']/..")
 	private WebElement opsmanagerprofileicon;
 	
@@ -101,8 +107,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 		System.out.println("Data :- "+ data);
 		
 		// pending approval 
-		waitforElement(viewdetailsbtn);
-		javascriptclick(viewdetailsbtn);
+		clickonviewdetailslistingbutton(0);     
 		
 		String url1 = driver.getCurrentUrl();
 		System.out.println("Listing details url :- "+ url1);
@@ -112,6 +117,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 		
 		waitforElement(opslogout);
 		javascriptclick(opslogout);
+		
 		
 	}
 	
@@ -124,10 +130,12 @@ public class opslistingmanagementpage extends opsBasicpage {
 		ClickAction(sidenavbarname);
 		
 		// pending approval
-		waitforElement(viewdetailsbtn);
-		javascriptclick(viewdetailsbtn);
-		
+		clickonviewdetailslistingbutton(0);
+				
 		scrollBottomofPage();
+				
+		waitforElement(approvebtn);
+		javascriptclick(approvebtn);  
 		
 		waitforElement(requesttorejectbtn);
 		javascriptclick(requesttorejectbtn);
@@ -246,6 +254,15 @@ public class opslistingmanagementpage extends opsBasicpage {
 		javascriptclick(opslogout);
 	}
 	
+	
+	public void clickonviewdetailslistingbutton(int value)
+	{
+		 for(int i = 0; i< viewdetailsbutton.size(); i++)
+		   {
+			 viewdetailsbutton.get(value).click();
+			   break;
+		   }
+	}
 	public void ClickAction(String btn) {
 	    switch(btn.toLowerCase()) {
 	        case "dashboard": javascriptclick(btnsSideBar.get(0)); break;

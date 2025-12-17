@@ -83,14 +83,35 @@ public class opslistingmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "(((//div[@class='overflow-hidden'])[2]/div)[2]/div/div)[2]/button/span")
 	private WebElement requesttorejectviewbtn;
 	
+	@FindBy(xpath = "//button[.='Request To Reject']")
+	private WebElement rejectionreasonbtn;
+	
 	@FindBy(xpath = "//button[.='Rejection with Reason']")
 	private WebElement rejectionwithreasonbtn;
+	
+	@FindBy(xpath = "//textarea")
+	private WebElement overridetextarea;
+	
+	@FindBy(xpath = "//button[.='Approve with Override']")
+	private WebElement approvewithoverridebtn;
 	
 	@FindBy(xpath = "//textarea")
 	private WebElement rejectionreasontextarea;
 	
 	@FindBy(xpath = "//button[.='Submit Rejection']")
 	private WebElement submitrejectionbtn;
+	
+	@FindBy(xpath = "//button[.='Yes']")
+	private WebElement yesbutton;
+	
+	@FindBy(xpath = "//button[.='No']")
+	private WebElement Nobutton; 
+	
+	@FindBy(xpath = "//input[@type='checkbox']")
+	private List<WebElement> documentcheckbox;
+	
+	@FindBy(xpath = "//button[.='Submit']")
+	private WebElement submitbutton;
 	
 	public void listingmanagementlistpage(String email, String pwd, String sidenavbarname, String searchbybusinessname)
 	{
@@ -135,11 +156,21 @@ public class opslistingmanagementpage extends opsBasicpage {
 		scrollBottomofPage();
 				
 		waitforElement(approvebtn);
-		javascriptclick(approvebtn);  
+		javascriptclick(approvebtn); 
 		
-		waitforElement(requesttorejectbtn);
-		javascriptclick(requesttorejectbtn);
-		Thread.sleep(2000);
+		waitforElement(yesbutton);
+		javascriptclick(yesbutton);
+
+		for(int i = 0; i < documentcheckbox.size(); i++)
+		{
+			Thread.sleep(500);
+			documentcheckbox.get(i).click();
+		}
+		
+		waitforElement(submitbutton);
+		javascriptclick(submitbutton);
+		
+		Thread.sleep(1000);
 		
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
@@ -164,6 +195,23 @@ public class opslistingmanagementpage extends opsBasicpage {
 		javascriptclick(requesttorejectviewbtn);
 		
 		scrollBottomofPage();
+		
+		waitforElement(approvebtn);
+		javascriptclick(approvebtn);
+		
+		waitforElement(overridetextarea);
+		overridetextarea.sendKeys("There is no issue with data, so am accepting this listing");
+		
+		for(int i = 0; i < documentcheckbox.size(); i++)
+		{
+			Thread.sleep(500);
+			documentcheckbox.get(i).click();
+		}
+		
+		waitforElement(approvewithoverridebtn);
+		javascriptclick(approvewithoverridebtn);
+		
+		Thread.sleep(1000);
 		
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
@@ -229,13 +277,16 @@ public class opslistingmanagementpage extends opsBasicpage {
 		// select the left nav bar features by name
 		ClickAction(sidenavbarname);
 		
-		waitforElement(requesttorejectviewbtn);
-		javascriptclick(requesttorejectviewbtn);
+		waitforElement(viewdetailsbtn);
+		javascriptclick(viewdetailsbtn);
 		
 		scrollBottomofPage();
 		
-		waitforElement(rejectionwithreasonbtn);
-		javascriptclick(rejectionwithreasonbtn);
+//		waitforElement(requesttorejectviewbtn);
+//		javascriptclick(requesttorejectviewbtn);
+		
+		waitforElement(rejectionreasonbtn);
+		javascriptclick(rejectionreasonbtn);
 		Thread.sleep(2000);
 		
 		waitforElement(rejectionreasontextarea);

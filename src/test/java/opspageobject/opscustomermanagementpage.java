@@ -123,7 +123,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//div[@class='ant-table-content']/table//tbody//button[.='View']")
 	private WebElement requesttorejectviewbutton;
 	
-	@FindBy(xpath = "//span[.='undo']")   // cross check 
+	@FindBy(xpath = "//span[@title='Undo review']")   // cross check //span[@title='Undo review']
 	private WebElement undobutton;
 	
 	@FindBy(xpath = "//span[.='Accept']")
@@ -153,15 +153,15 @@ public class opscustomermanagementpage extends opsBasicpage {
 		waitforElement(KycUploadButton);
 		javascriptclick(KycUploadButton);
 		
-		clickOnCard("Authorization Letter", "Accept");
+		clickOnCard("Authorization Letters", "Accept");
 		clickOnCard("PAN Card", "Accept");
 		clickOnCard("GST Certificate", "Accept");
 		clickOnCard("TAN Certificate", "Accept");
 		clickOnCard("LUT Certificate", "Accept");
 		clickOnCard("Cancelled Cheque", "Accept");
-//		clickOnCard(" Udyam Certificate (MSME)", "Accept");
-//		clickOnCard("IEC Certificate", "Accept");
-//		clickOnCard("D&B Certificate", "Accept");
+		clickOnCard(" Udyam Certificate (MSME)", "Accept");
+		clickOnCard("IEC Certificate", "Accept");
+		clickOnCard("D&B Certificate", "Accept");
 		
 		
 		
@@ -187,7 +187,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 		
 		}
 	
-	public void customermanagementexecuteapprove(String email, String pwd, String sidenavbarname) throws InterruptedException
+	public void customermanagementexecutereject(String email, String pwd, String sidenavbarname) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
@@ -211,7 +211,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 		waitforElement(KycUploadButton);
 		javascriptclick(KycUploadButton);
 		
-		clickOnCard("Authorization Letter", "Reject");
+		clickOnCard("Authorization Letters", "Reject");
 		clickOnCard("PAN Card", "Accept");
 		clickOnCard("GST Certificate", "Accept");
 		clickOnCard("TAN Certificate", "Accept");
@@ -219,7 +219,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 		clickOnCard("Cancelled Cheque", "Accept");
 		clickOnCard(" Udyam Certificate (MSME)", "Accept");
 		clickOnCard("IEC Certificate", "Accept");
-		clickOnCard("D&B Certificate", "Accept");
+//		clickOnCard("D&B Certificate", "Accept");
 		
 		waitforElement(requesttorejctionbutton);
 		javascriptclick(requesttorejctionbutton);
@@ -259,7 +259,7 @@ public class opscustomermanagementpage extends opsBasicpage {
 		//click on pending KYC approval
 		ClickOnApprovalFiles(0);
 		
-		Thread.sleep(4000);
+		Thread.sleep(3000);
 				
 		String url = driver.getCurrentUrl();
 		System.out.println("URL :- "+ url);
@@ -292,8 +292,8 @@ public class opscustomermanagementpage extends opsBasicpage {
 			break;
 		}
 		
-		waitforElement(viewbtn);
-		javascriptclick(viewbtn);
+//		waitforElement(viewbtn);
+//		javascriptclick(viewbtn);
 		
 		String url1 = driver.getCurrentUrl();
 		System.out.println("customer details page current URL : - "+url1);
@@ -326,11 +326,16 @@ public class opscustomermanagementpage extends opsBasicpage {
 		
 		waitforElement(requesttorejectviewbutton);
 		javascriptclick(requesttorejectviewbutton);
-		
-
+	
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", KycUploadButton);
 		
 		waitforElement(KycUploadButton);
-		javascriptclick(KycUploadButton);
+//		javascriptclick(KycUploadButton);
+		KycUploadButton.click();
+		
+		waitforElement(undobutton);
+		javascriptclick(undobutton);		
 		
 		waitforElement(acceptbutton);
 		javascriptclick(acceptbutton);

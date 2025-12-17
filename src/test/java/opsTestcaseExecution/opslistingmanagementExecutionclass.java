@@ -9,7 +9,7 @@ import opspageobject.opslistingmanagementpage;
 
 public class opslistingmanagementExecutionclass extends opsBaseclass {
 	
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void listingmanagementlist()
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
@@ -18,6 +18,8 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
+	
+	// working
 	@Test(priority = 1, enabled = false)
 	public void listingmanagementapproval() throws InterruptedException
 	{
@@ -27,8 +29,7 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
-	
-	
+	// working
 	@Test(priority = 1, enabled = false)
 	public void listingmanagementrequesttorejctexecutive() throws InterruptedException
 	{
@@ -38,6 +39,7 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
+	// working
 	@Test(priority = 2, enabled = false)
 	public void listingmanagementassign() throws AWTException, InterruptedException
 	{
@@ -47,7 +49,8 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		
 	}
 	
-	@Test(priority = 3, enabled = true)
+	// working
+	@Test(priority = 3, enabled = false)
 	public void listingmanagementrequesttoreject() throws InterruptedException
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);

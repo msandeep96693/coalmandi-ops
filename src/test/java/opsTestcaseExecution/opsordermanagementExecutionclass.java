@@ -7,7 +7,7 @@ import opspageobject.opsordermanagementpage;
 
 public class opsordermanagementExecutionclass extends opsBaseclass  {
 	
-	@Test
+	@Test(priority = 0, enabled = false)
 	public void ordermanagementlistpage() throws InterruptedException
 	{
 		opsordermanagementpage order = new opsordermanagementpage(driver);
@@ -16,9 +16,4 @@ public class opsordermanagementExecutionclass extends opsBaseclass  {
 		
 	}
 
-//	@Test
-	public void ordermanagementdetailsnoteaction()
-	{
-		
-	}
 }

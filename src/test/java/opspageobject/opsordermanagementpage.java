@@ -3,6 +3,7 @@ package opspageobject;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,18 @@ public class opsordermanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//button[.='View Details']")
 	private List<WebElement> viewdetailsbtns;
 	
+	@FindBy(xpath = "//span[@class='text-sm font-medium text-white']/..")
+	private WebElement opsmanagerprofileicon;
+	
+	@FindBy(xpath = "//button[.='Logout']")
+	private WebElement opslogout;
+	
+	@FindBy(xpath = "//span[@title='All Status']")
+	private WebElement allstatusdropdown;
+	
+	@FindBy(xpath = "//tbody[@class='ant-table-tbody']/tr/td/div/div/span")  
+	private List<WebElement> allStatusnames;
+	
 	public void opsordermanagementlistpage(String email, String pwd, String sidenavbarname , String statusoptionname) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
@@ -55,6 +68,8 @@ public class opsordermanagementpage extends opsBasicpage {
 		
 		Thread.sleep(2000);
 	}
+	
+	
 	
 	
 	

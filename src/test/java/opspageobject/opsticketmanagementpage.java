@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -57,50 +58,96 @@ public class opsticketmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//button[.='Logout']")
 	private WebElement opslogout;
 	
+	@FindBy(xpath = "//span[@title='All']")
+	private WebElement allstatusdropdown;
 	
+	@FindBy(xpath = "//div[@class='ant-select-item ant-select-item-option']/div")
+	private List<WebElement> statusoptions;
 	
+	@FindBy(xpath = "//td[@class='ant-table-cell']/div/div/span")
+	private List<WebElement> statusnameinlist;
 	
-	public void ticketmanagementaction(String email, String pwd, String sidenavbarname) throws InterruptedException
+	@FindBy(xpath = "//span[.='Escalate To Admin']")
+	private WebElement escalatedtoadminbtn;
+	
+	@FindBy(xpath = "//button[.='Submit']")
+	private WebElement submitbtn;
+	
+	@FindBy(xpath = "//span[.='Close Ticket']")
+	private WebElement closeticketbutton;
+	
+	public void ticketmanagementaction(String opsemail, String pwd, String sidebarticketname,
+			String ticketstatusoptionnameopen) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
-		opssign.opssigninpage(email, pwd);
+		opssign.opssigninpage(opsemail, pwd);
 		
 		// select the left nav bar features by name
-		ClickAction(sidenavbarname);
+//		ClickAction(sidebarticketname);
+		executiveClickAction(sidebarticketname);
 		Thread.sleep(1000);
 		
-		for (int i = 0; i < ticketlistdata.size(); i++) {
-		    
-		        // Re-fetch element each loop iteration (avoid stale reference)
-		        WebElement ticketdata = ticketlistdata.get(i);
-
-		        String data = ticketdata.getText().trim();
-		        System.out.println("Ticket data :- " + data);
-
-		        if (data.equalsIgnoreCase("in progress") || data.toLowerCase().contains("in progress")) {
-		            ticketdata.click();
-		            break;
-		        }
-		}
+		waitforElement(allstatusdropdown);
+		allstatusdropdown.click();
+		
+		selectDropdownOption(statusoptions, ticketstatusoptionnameopen);
 		
 		Thread.sleep(2000);
+		statusnameinlist.get(0).click();
 		
-		scrollBottomofPage();
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;
+		 js1.executeScript("arguments[0].scrollIntoView({block: 'center'});", markasinprogressbtn);
 		
-//		waitforElement(markasinprogressbtn);
-//		javascriptclick(markasinprogressbtn);
+		waitforElement(markasinprogressbtn);
+		javascriptclick(markasinprogressbtn);
 		
-		waitforElement(closeticketbtn);
-		javascriptclick(closeticketbtn);
+		Thread.sleep(1000);
 		
+		waitforElement(escalatedtoadminbtn);
+		escalatedtoadminbtn.click();
+			
 		waitforElement(selectcloseticketradiobtn);
 		javascriptclick(selectcloseticketradiobtn);
 		
 		waitforElement(remarkstextarea);
 		remarkstextarea.sendKeys("No problem");
+	
+		waitforElement(submitbtn);
+		javascriptclick(submitbtn);
 		
-		waitforElement(closeticketbtn2);
-		javascriptclick(closeticketbtn2);
+		Thread.sleep(2000);
+		
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+
+	}
+	
+	public void closeticketbyopsadmin(String opsemail, String pwd, String sidebarticketname,
+			String ticketstatusoptionnameescalated) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(opsemail, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidebarticketname);
+		Thread.sleep(1000);
+		
+		waitforElement(allstatusdropdown);
+		allstatusdropdown.click();
+		
+		selectDropdownOption(statusoptions, ticketstatusoptionnameescalated);
+		
+		Thread.sleep(2000);
+		statusnameinlist.get(0).click();
+		
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;
+		 js1.executeScript("arguments[0].scrollIntoView({block: 'center'});", closeticketbutton);
+		
+		waitforElement(closeticketbutton);
+		javascriptclick(closeticketbutton);
 		
 		Thread.sleep(2000);
 		
@@ -113,30 +160,23 @@ public class opsticketmanagementpage extends opsBasicpage {
 	}
 	
 	
-	public void listingmanagementassignpage(String email, String pwd, String sidenavbarname, String opsexecutivename) throws AWTException, InterruptedException
+	public void ticketmanagementassignpage(String email, String pwd, String sidebarticketname,
+			String ticketstatusoptionnameopen, String opsexecutivename
+			 ) throws AWTException, InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
 		
 		// select the left nav bar features by name
-		ClickAction(sidenavbarname);
+		ClickAction(sidebarticketname);
 		
-		Thread.sleep(1000);
-		for (int i = 0; i < ticketlistdata.size(); i++) {
-		    
-	        // Re-fetch element each loop iteration (avoid stale reference)
-	        WebElement ticketdata = ticketlistdata.get(i);
-
-	        String data = ticketdata.getText().trim();
-	        System.out.println("Ticket data :- " + data);
-
-	        if (data.equalsIgnoreCase("Open") || data.toLowerCase().contains("open")) {
-	            ticketdata.click();
-	            break;
-	        }
-	}
+		waitforElement(allstatusdropdown);
+		allstatusdropdown.click();
 		
+		selectDropdownOption(statusoptions, ticketstatusoptionnameopen);
 		
+		Thread.sleep(2000);
+		statusnameinlist.get(0).click();
 		
 		waitforElement(assignbtn);
 		javascriptclick(assignbtn);
@@ -147,12 +187,12 @@ public class opsticketmanagementpage extends opsBasicpage {
 		waitforElement(opsexecutivesearchtextfield);
 		opsexecutivesearchtextfield.sendKeys(opsexecutivename);
 		
-		
 		Actions actions = new Actions(driver);
 		actions.sendKeys(Keys.TAB).perform();
 		
-//		waitforElement(assignbutton2);	
-//		javascriptclick(assignbutton2);
+		waitforElement(assignbutton2);	
+		javascriptclick(assignbutton2);
+		Thread.sleep(2000);
 		
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
@@ -177,6 +217,24 @@ public class opsticketmanagementpage extends opsBasicpage {
 	        case "ticket": javascriptclick(btnsSideBar.get(8)); break;
 	        case "reports": javascriptclick(btnsSideBar.get(9)); break;
 	        case "help": javascriptclick(btnsSideBar.get(10)); break;
+	     
+	        default: throw new NoSuchElementException("Button not found: " + btn);
+	    }
+	}
+	
+	public void executiveClickAction(String btn) {
+	    switch(btn.toLowerCase()) {
+	        case "dashboard": javascriptclick(btnsSideBar.get(0)); break;
+	        case "customer management": javascriptclick(btnsSideBar.get(1)); break;
+	        case "listing": javascriptclick(btnsSideBar.get(2)); break;
+	        case "auction": javascriptclick(btnsSideBar.get(3)); break;
+	        case "order": javascriptclick(btnsSideBar.get(4)); break;
+	        case "vendor": javascriptclick(btnsSideBar.get(5)); break;
+	        
+	     
+	        case "ticket": javascriptclick(btnsSideBar.get(6)); break;
+	        case "reports": javascriptclick(btnsSideBar.get(7)); break;
+	        case "help": javascriptclick(btnsSideBar.get(8)); break;
 	     
 	        default: throw new NoSuchElementException("Button not found: " + btn);
 	    }

@@ -2,31 +2,31 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-19T12:08:18 IST" name="Default suite" finished-at="2025-12-19T12:08:33 IST" duration-ms="14979">
+  <suite started-at="2025-12-23T10:59:15 IST" name="Default suite" finished-at="2025-12-23T10:59:44 IST" duration-ms="28595">
     <groups>
     </groups>
-    <test started-at="2025-12-19T12:08:18 IST" name="Default test" finished-at="2025-12-19T12:08:33 IST" duration-ms="14979">
-      <class name="opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass">
-        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@661972b0]" started-at="2025-12-19T12:08:18 IST" name="setup" finished-at="2025-12-19T12:08:21 IST" duration-ms="3589" status="PASS">
+    <test started-at="2025-12-23T10:59:15 IST" name="Default test" finished-at="2025-12-23T10:59:44 IST" duration-ms="28595">
+      <class name="opsTestcaseExecution.opsvendormanagementExecutionclass">
+        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@7c729a55]" started-at="2025-12-23T10:59:15 IST" name="setup" finished-at="2025-12-23T10:59:18 IST" duration-ms="2850" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="closeticketbyopsadminpage()[pri:1, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@661972b0]" started-at="2025-12-19T12:08:21 IST" name="closeticketbyopsadminpage" finished-at="2025-12-19T12:08:33 IST" duration-ms="11243" status="PASS">
+        <test-method signature="opsvendorapprovalflow()[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@7c729a55]" started-at="2025-12-23T10:59:18 IST" name="opsvendorapprovalflow" finished-at="2025-12-23T10:59:44 IST" duration-ms="25589" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- closeticketbyopsadminpage -->
-        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@661972b0]" started-at="2025-12-19T12:08:33 IST" name="tear" finished-at="2025-12-19T12:08:33 IST" duration-ms="101" status="PASS">
+        </test-method> <!-- opsvendorapprovalflow -->
+        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@7c729a55]" started-at="2025-12-23T10:59:44 IST" name="tear" finished-at="2025-12-23T10:59:44 IST" duration-ms="111" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=closeticketbyopsadminpage status=SUCCESS method=opsticketmanagementcloseticketExecutionclass.closeticketbyopsadminpage()[pri:1, instance:opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass@661972b0] output={null}]]]>
+                <![CDATA[[TestResult name=opsvendorapprovalflow status=SUCCESS method=opsvendormanagementExecutionclass.opsvendorapprovalflow()[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@7c729a55] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tear -->
-      </class> <!-- opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass -->
+      </class> <!-- opsTestcaseExecution.opsvendormanagementExecutionclass -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

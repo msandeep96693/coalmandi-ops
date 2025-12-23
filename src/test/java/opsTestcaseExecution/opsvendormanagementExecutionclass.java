@@ -8,11 +8,12 @@ import opspageobject.opsvendormanagementpage;
 
 public class opsvendormanagementExecutionclass  extends opsBaseclass {
 
-	@Test
+	// working
+	@Test(priority = 0, enabled = true)
 	public void opsvendorapprovalflow() throws InterruptedException
 	{
 		opsvendormanagementpage customer = new opsvendormanagementpage(driver);
-		customer.customermanagementactivitypage(prop.getProperty("opsemail"), prop.getProperty("password"), 
+		customer.vendormanagementactivitypage(prop.getProperty("opsemail"), prop.getProperty("password"), 
 				prop.getProperty("sidebarvendorname"));
 	}
 }

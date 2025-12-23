@@ -51,7 +51,7 @@ public class opsvendormanagementpage extends opsBasicpage {
 	
 	
 	
-	public void customermanagementactivitypage(String email, String pwd, String sidenavbarname) throws InterruptedException
+	public void vendormanagementactivitypage(String email, String pwd, String sidenavbarname) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
@@ -81,12 +81,9 @@ public class opsvendormanagementpage extends opsBasicpage {
 		clickOnCard("TAN Certificate", "Accept");
 		clickOnCard("LUT Certificate", "Accept");
 		clickOnCard("Cancelled Cheque", "Accept");
-//		clickOnCard(" Udyam Certificate (MSME)", "Accept");
-//		clickOnCard("IEC Certificate", "Accept");
-//		clickOnCard("D&B Certificate", "Accept");
-		
-		
-		
+		clickOnCard(" Udyam Certificate (MSME)", "Accept");
+		clickOnCard("IEC Certificate", "Accept");
+
 		waitforElement(submitreviewbtn);
 		javascriptclick(submitreviewbtn);
 		

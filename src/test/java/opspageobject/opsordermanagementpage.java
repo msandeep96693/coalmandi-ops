@@ -25,8 +25,11 @@ public class opsordermanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//span[@title='All Status']")
 	private WebElement clickonstatusdropdown;
 	
-	@FindBy(xpath = "//div[@class='ant-select-item ant-select-item-option']")
+	@FindBy(xpath = "//div[@class='ant-select-item-option-content']")
 	private List<WebElement> statusdropdownoptionlist;
+	
+	@FindBy(xpath = "//button[.='View']")
+	private List<WebElement> viewbtns;
 	
 	@FindBy(xpath = "(//div[@class='w-full']/div)[2]/div/div")
 	private List<WebElement> orderlistdata;
@@ -62,51 +65,22 @@ public class opsordermanagementpage extends opsBasicpage {
 		waitforElement(clickonstatusdropdown);
 		clickonstatusdropdown.click();
 		
-		selectDropdownOption(statusdropdownoptionlist, "In Progress");
+//		selectDropdownOption(statusdropdownoptionlist, statusoptionname);
+		statusdropdownoptionlist.get(2).click();
 		
-		clickViewButtonUsingContains("In Progress");
+		// click first view button based on status dropdown
+		viewbtns.get(0).click();
 		
 		Thread.sleep(2000);
+		
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
 	}
 	
 	
-	
-	
-	
-	
-	
-	public void clickViewButtonUsingContains(String statusTextToMatch) throws InterruptedException {
-
-	    boolean found = false;
-
-	    for (int i = 0; i < orderlistdata.size(); i++) {
-	        
-	    	Thread.sleep(2000);
-	        String statusText = orderlistdata.get(i).getText().trim();
-	        System.out.println("Row Status: " + statusText);
-
-	        if (statusText.toLowerCase().contains(statusTextToMatch.toLowerCase())) {
-	            
-	            WebElement viewButton = viewdetailsbtns.get(i);
-
-	            // Scroll button into view
-	            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", viewButton);
-	            Thread.sleep(600);
-
-	            // Click using JS for reliability
-	            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", viewButton);
-	            
-	            System.out.println("✅ View button clicked for status containing: " + statusTextToMatch);
-	            
-	            found = true;
-	            break;
-	        }
-	    }
-
-	    if (!found) {
-	        System.out.println("❌ No row found with status containing: " + statusTextToMatch);
-	    }
-	}
 
 	public void ClickAction(String btn) {
 	    switch(btn.toLowerCase()) {

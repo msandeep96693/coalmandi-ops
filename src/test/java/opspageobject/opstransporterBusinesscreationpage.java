@@ -355,7 +355,7 @@ import org.testng.annotations.Test;
 			javascriptclick(sendotpbutton);
 			
 //			// enter otp into textfields and click enter button on keyboard
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(35));
+			
 //			wait.until(d -> whatsappotpinputfield.stream().allMatch(field -> !field.getAttribute("value").isEmpty()));
 			
 			// Give user 15 seconds to enter OTP
@@ -426,9 +426,14 @@ import org.testng.annotations.Test;
 			producttotradedropdown.click();
 			
 			Thread.sleep(1000);
-			selectDropdownOption(alldropdownoption, "Metallurgical");
+			alldropdownoption.get(0).click();
 			Thread.sleep(1000);
-			selectDropdownOption(alldropdownoption, "Thermal");
+			alldropdownoption.get(1).click();
+			
+//			Thread.sleep(1000);
+//			selectDropdownOption(alldropdownoption, "Metallurgical");
+//			Thread.sleep(1000);
+//			selectDropdownOption(alldropdownoption, "Thermal");
 			
 			Thread.sleep(1000);
 			Robot rob=new Robot();
@@ -442,9 +447,11 @@ import org.testng.annotations.Test;
 			originofcoaldropdown.click();
 			
 			Thread.sleep(1000);
-			selectDropdownOption(alldropdownoption, "Domestic");
+//			selectDropdownOption(alldropdownoption, "Domestic");
+			alldropdownoption.get(4).click();
 			Thread.sleep(1000);
-			selectDropdownOption(alldropdownoption, "International");
+//			selectDropdownOption(alldropdownoption, "International");
+			alldropdownoption.get(5).click();
 			
 			Robot rob1=new Robot();
 			rob1.keyPress(KeyEvent.VK_ESCAPE);
@@ -470,26 +477,26 @@ import org.testng.annotations.Test;
 
 			
 			// Is same as business owner
-			waitforElement(Issameasbusinessownercheckbox);
-			javascriptclick(Issameasbusinessownercheckbox);
+//			waitforElement(Issameasbusinessownercheckbox);
+//			javascriptclick(Issameasbusinessownercheckbox);
 			
 			// contact info data
 			// -----------------------------------
 			// enter contact name 
-//			waitforElement(contactnamefield);
-//			contactnamefield.sendKeys(setRandomName());
-//			
-//			// enter designation 
-//			waitforElement(desginationfield);
-//			desginationfield.sendKeys(designation);
-//			
-//			// enter email 
-//			waitforElement(emailfield);
-//			emailfield.sendKeys(setRandomEmail());
-//			
-//			// enter contact number
-//			waitforElement(mobilenumberfield);
-//			mobilenumberfield.sendKeys(setRandomMobileNumber());
+			waitforElement(contactnamefield);
+			contactnamefield.sendKeys(setRandomName());
+			
+			// enter designation 
+			waitforElement(desginationfield);
+			desginationfield.sendKeys(designation);
+			
+			// enter email 
+			waitforElement(emailfield);
+			emailfield.sendKeys(setRandomEmail());
+			
+			// enter contact number
+			waitforElement(mobilenumberfield);
+			mobilenumberfield.sendKeys(setRandomMobileNumber());
 			
 			// click on save & proceed button
 			waitforElement(saveandproceedbutton);
@@ -503,6 +510,9 @@ import org.testng.annotations.Test;
 			
 			Thread.sleep(2000);
 			
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", proceedtokycbutton);
+			
 			// click on proceed to kyc button
 			waitforElement(proceedtokycbutton);
 			javascriptclick(proceedtokycbutton);
@@ -511,20 +521,17 @@ import org.testng.annotations.Test;
 			
 			// KYC document
 			// authorization 
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			kycdocuploadandsubmit("Authorization Letter", uploadFiles, submitButtons);
 			
-			
-			
 //			// PAN Card
-			Thread.sleep(3000);
+			Thread.sleep(1500);
 			kycdocuploadandsubmit("PAN Card", uploadFiles, submitButtons);
-			Thread.sleep(3000);
+			Thread.sleep(1500);
 			
 			// GST Certificate 
-			Thread.sleep(3000);
 			kycdocuploadandsubmit("GST Certificate", uploadFiles, submitButtons);
-			Thread.sleep(3000);
+			Thread.sleep(1500);
 			
 			// TAN certificate
 			waitforElement(TANnumbertextfield);
@@ -536,7 +543,7 @@ import org.testng.annotations.Test;
 					
 			// LUT Certificate
 			
-			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			By radioBtn = By.xpath("(//input[@type='radio'])[1]");
 
 			WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(radioBtn));
@@ -544,7 +551,6 @@ import org.testng.annotations.Test;
 //			// Scroll to element
 //			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 			
-			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 			
 			waitforElement(LUTradioyesbutton);

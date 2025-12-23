@@ -1,6 +1,7 @@
 package opspageobject;
 
 import java.awt.AWTException;
+import java.awt.Desktop.Action;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
@@ -10,8 +11,10 @@ import java.util.NoSuchElementException;
 import org.checkerframework.checker.interning.qual.FindDistinct;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -128,6 +131,69 @@ public class opscustomermanagementpage extends opsBasicpage {
 	
 	@FindBy(xpath = "//span[.='Accept']")
 	private WebElement acceptbutton;
+	
+	@FindBy(xpath = "//input[@placeholder='From Date']")
+	private WebElement fromdate;
+	
+	@FindBy(xpath = "//input[@placeholder='To Date']")
+	private WebElement todate;
+	
+	@FindBy(xpath="//div[@class='w-full']/div[2]//span[text()='Incomplete Profiles']/../../div[2]/div")  
+	private List<WebElement> cardInComplete;
+	
+	public void opscustomermanagementactivitylist(String email, String pwd, String sidenavbarname,
+			String searchbycontactname) throws AWTException, InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(email, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidenavbarname);
+		
+		waitforElement(activitiessubbtn);
+		javascriptclick(activitiessubbtn);
+		
+		Thread.sleep(1000);
+		waitforElement(fromdate);
+		fromdate.sendKeys(currentdatefetch());
+		
+		Thread.sleep(2000);
+		waitforElement(todate);
+		todate.sendKeys("12 January 2026");
+		
+//		Robot rt = new Robot();
+//		rt.keyPress(KeyEvent.VK_ENTER);
+//		rt.keyRelease(KeyEvent.VK_ENTER);
+		
+		Thread.sleep(500);
+		Actions act = new Actions(driver);
+		act.sendKeys(Keys.ESCAPE);
+		
+		for(WebElement complete:cardInComplete)
+		{
+			Thread.sleep(2000);
+			String Businessdata = complete.getText();
+			System.out.println("Business data :- "+ Businessdata);
+		}
+		
+		waitforElement(searchtextfield);
+		searchtextfield.sendKeys(searchbycontactname);
+		
+		Thread.sleep(2000);
+		
+		for(WebElement complete:cardInComplete)
+		{
+			String Businessdata = complete.getText();
+			System.out.println("Business data :- "+ Businessdata);
+		}
+		
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+	}
+	
 	
 	public void customermanagementactivitypage(String email, String pwd, String sidenavbarname) throws InterruptedException
 	{

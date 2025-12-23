@@ -8,8 +8,16 @@ import opspageobject.opscustomermanagementpage;
 
 public class opscustomermanagementExecutionclass extends opsBaseclass {
 	
-	// working
 	@Test(priority = 0, enabled = true)
+	public void opscustomermgmtactivitylistpage() throws AWTException, InterruptedException
+	{
+		opscustomermanagementpage activity = new opscustomermanagementpage(driver);
+		activity.opscustomermanagementactivitylist(prop.getProperty("opsadminemail"),prop.getProperty("password"),
+				prop.getProperty("sidebarcustmgmtname"),prop.getProperty("searchbycontactname"));
+	}
+	
+	// working
+	@Test(priority = 0, enabled = false)
 	public void customermanagementapprovalflow() throws InterruptedException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
@@ -42,4 +50,8 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 		customer.customermanagementrequesttorejectactionpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
 				prop.getProperty("approvedoverridetext"));
 	}
+	
+	
+	
+	
 }

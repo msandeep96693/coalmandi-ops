@@ -7,7 +7,8 @@ import opspageobject.opsordermanagementpage;
 
 public class opsordermanagementExecutionclass extends opsBaseclass  {
 	
-	@Test(priority = 0, enabled = false)
+	//working
+	@Test(priority = 0, enabled = true)
 	public void ordermanagementlistpage() throws InterruptedException
 	{
 		opsordermanagementpage order = new opsordermanagementpage(driver);

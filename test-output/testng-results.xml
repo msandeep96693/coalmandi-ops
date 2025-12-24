@@ -2,31 +2,31 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-23T17:21:18 IST" name="Default suite" finished-at="2025-12-23T17:21:36 IST" duration-ms="18530">
+  <suite started-at="2025-12-24T17:43:04 IST" name="Default suite" finished-at="2025-12-24T17:43:21 IST" duration-ms="16595">
     <groups>
     </groups>
-    <test started-at="2025-12-23T17:21:18 IST" name="Default test" finished-at="2025-12-23T17:21:36 IST" duration-ms="18530">
-      <class name="opsTestcaseExecution.opscustomermanagementExecutionclass">
-        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@323b36e0]" started-at="2025-12-23T17:21:18 IST" name="setup" finished-at="2025-12-23T17:21:20 IST" duration-ms="2059" status="PASS">
+    <test started-at="2025-12-24T17:43:04 IST" name="Default test" finished-at="2025-12-24T17:43:21 IST" duration-ms="16595">
+      <class name="opsTestcaseExecution.opsvendormanagementExecutionclass">
+        <test-method is-config="true" signature="setup()[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@3bb9a3ff]" started-at="2025-12-24T17:43:04 IST" name="setup" finished-at="2025-12-24T17:43:08 IST" duration-ms="3569" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="opscustomermgmtactivitylistpage()[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@323b36e0]" started-at="2025-12-23T17:21:20 IST" name="opscustomermgmtactivitylistpage" finished-at="2025-12-23T17:21:36 IST" duration-ms="16333" status="PASS">
+        <test-method signature="vendormanagementlistpage()[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@3bb9a3ff]" started-at="2025-12-24T17:43:08 IST" name="vendormanagementlistpage" finished-at="2025-12-24T17:43:21 IST" duration-ms="12892" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- opscustomermgmtactivitylistpage -->
-        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@323b36e0]" started-at="2025-12-23T17:21:36 IST" name="tear" finished-at="2025-12-23T17:21:36 IST" duration-ms="92" status="PASS">
+        </test-method> <!-- vendormanagementlistpage -->
+        <test-method is-config="true" signature="tear(org.testng.ITestResult)[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@3bb9a3ff]" started-at="2025-12-24T17:43:21 IST" name="tear" finished-at="2025-12-24T17:43:21 IST" duration-ms="87" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=opscustomermgmtactivitylistpage status=SUCCESS method=opscustomermanagementExecutionclass.opscustomermgmtactivitylistpage()[pri:0, instance:opsTestcaseExecution.opscustomermanagementExecutionclass@323b36e0] output={null}]]]>
+                <![CDATA[[TestResult name=vendormanagementlistpage status=SUCCESS method=opsvendormanagementExecutionclass.vendormanagementlistpage()[pri:0, instance:opsTestcaseExecution.opsvendormanagementExecutionclass@3bb9a3ff] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tear -->
-      </class> <!-- opsTestcaseExecution.opscustomermanagementExecutionclass -->
+      </class> <!-- opsTestcaseExecution.opsvendormanagementExecutionclass -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

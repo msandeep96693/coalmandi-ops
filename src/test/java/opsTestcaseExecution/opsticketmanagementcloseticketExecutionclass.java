@@ -9,6 +9,16 @@ import opspageobject.opsticketmanagementpage;
 
 public class opsticketmanagementcloseticketExecutionclass extends opsBaseclass {
 	
+	
+	// working
+	@Test(priority = 0, enabled = true)
+	public void ticketlistpage() throws InterruptedException
+	{
+		opsticketmanagementpage ticket = new opsticketmanagementpage(driver);
+		ticket.ticketmanagementlistpage(prop.getProperty("opsemail"), prop.getProperty("password"),
+				prop.getProperty("sidebarticketname"), prop.getProperty("ticketstatusoptionnameclosed"));
+	}
+	
 	// working
 	@Test(priority = 0, enabled = false)
 	public void escalateticketpage() throws InterruptedException
@@ -18,7 +28,7 @@ public class opsticketmanagementcloseticketExecutionclass extends opsBaseclass {
 				prop.getProperty("sidebarticketname"), prop.getProperty("ticketstatusoptionnameopen"));
 	}
 	
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void closeticketbyopsadminpage() throws InterruptedException
 	{
 		opsticketmanagementpage ticket = new opsticketmanagementpage(driver);

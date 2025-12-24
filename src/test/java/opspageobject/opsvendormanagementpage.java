@@ -48,16 +48,91 @@ public class opsvendormanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//button[.='Logout']")
 	private WebElement opslogout;
 	
+	@FindBy(xpath="//div[@class='w-full']/div[2]//span[text()='Incomplete Profiles']/../../div[2]/div")  
+	private List<WebElement> cardInComplete;
 	
+	@FindBy(xpath = "//input[@type='search']")
+	private WebElement searchtextfield;
 	
+	@FindBy(xpath = "//input[@placeholder='From Date']")
+	private WebElement fromdate;
 	
-	public void vendormanagementactivitypage(String email, String pwd, String sidenavbarname) throws InterruptedException
+	@FindBy(xpath = "//input[@placeholder='To Date']")
+	private WebElement todate;
+	
+	public void vendormanagementactivitylistflow(String email, String pwd, String sidebarvendorname,
+			String searchbyvendorcontactname, String todateformat) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
 		
 		// select the left nav bar features by name
-		ClickAction(sidenavbarname);
+		ClickAction(sidebarvendorname);
+		Thread.sleep(1000);
+		
+		// click on add team member button
+		waitforElement(activitiessubbtn);
+		javascriptclick(activitiessubbtn);
+		
+		waitforElement(searchtextfield);
+		searchtextfield.sendKeys(searchbyvendorcontactname);
+		
+		Thread.sleep(2000);
+		
+		for(WebElement complete:cardInComplete)
+		{
+//			Thread.sleep(500);
+			String Businessdata = complete.getText();
+			System.out.println("Business data :- "+ Businessdata);
+		}
+		
+		Thread.sleep(1000);
+		waitforElement(fromdate);
+		fromdate.sendKeys(currentdatefetch());
+		
+		Thread.sleep(2000);
+		waitforElement(todate);
+		todate.sendKeys(todateformat);
+		
+		waitforElement(searchtextfield);
+		searchtextfield.click();
+		
+//		Robot rt = new Robot();
+//		rt.keyPress(KeyEvent.VK_ENTER);
+//		rt.keyRelease(KeyEvent.VK_ENTER);
+		
+//		Thread.sleep(500);
+//		Actions act = new Actions(driver);
+//		act.sendKeys(Keys.ESCAPE);
+		
+		Thread.sleep(1500);
+		for(WebElement complete:cardInComplete)
+		{
+			Thread.sleep(500);
+			String Businessdata = complete.getText();
+			System.out.println("Business data :- "+ Businessdata);
+		}
+		
+		
+		
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+		
+		
+		
+	}
+	
+	
+	public void vendormanagementactivitypage(String email, String pwd, String sidebarvendorname) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(email, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidebarvendorname);
 		Thread.sleep(1000);
 		
 		// click on add team member button

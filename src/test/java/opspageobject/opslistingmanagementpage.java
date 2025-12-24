@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,7 @@ public class opslistingmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//input[@placeholder='Search by Business Name, Coal Type']")
 	private WebElement listsearchtextfield;
 	
-	@FindBy(xpath = "(//div[@class='flex flex-col gap-2'])[1]")
+	@FindBy(xpath = "(//div[@class='flex flex-col gap-2'])[1]//div")
 	private WebElement listdata;
 	
 	@FindBy(xpath = "//button[.='View Details']")
@@ -67,6 +68,11 @@ public class opslistingmanagementpage extends opsBasicpage {
 	
 	@FindBy(xpath = "//span[.='Others']")
 	private WebElement othersection;
+	
+	@FindBy(xpath = "//span[.='Approved']")
+	private WebElement clickonstatusfilterdropdown;
+	
+	
 	
 	@FindBy(xpath = "(//input[@type='search'])[2]")   // 
 	private WebElement clickonstatusdropdown;
@@ -113,13 +119,17 @@ public class opslistingmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//button[.='Submit']")
 	private WebElement submitbutton;
 	
-	public void listingmanagementlistpage(String email, String pwd, String sidenavbarname, String searchbybusinessname)
+	@FindBy(xpath = "//div[@class='ant-select-item-option-content']")
+	private List<WebElement> statusoptionslist;
+	
+	public void listingmanagementlistpage(String email, String pwd, String sidebarlistingname, 
+			String searchbybusinessname) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
 		
 		// select the left nav bar features by name
-		ClickAction(sidenavbarname);
+		ClickAction(sidebarlistingname);
 		
 		waitforElement(listsearchtextfield);
 		listsearchtextfield.sendKeys(searchbybusinessname);
@@ -129,10 +139,24 @@ public class opslistingmanagementpage extends opsBasicpage {
 		
 		// pending approval 
 		clickonviewdetailslistingbutton(0);     
-		
+	
 		String url1 = driver.getCurrentUrl();
 		System.out.println("Listing details url :- "+ url1);
 		
+		Thread.sleep(2000);
+		ClickAction(sidebarlistingname);
+		
+		
+		waitforElement(othersection);
+		othersection.click();
+		
+		Thread.sleep(800);
+		waitforElement(clickonstatusfilterdropdown);
+		clickonstatusfilterdropdown.click();
+		
+		statusoptionslist.get(4).click();
+		
+		Thread.sleep(2000);
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
 		
@@ -305,11 +329,16 @@ public class opslistingmanagementpage extends opsBasicpage {
 		javascriptclick(opslogout);
 	}
 	
+	public void selectOption(String value) {
+	    String xpath = "//span[@title='" + value + "']";
+	    driver.findElement(By.xpath(xpath)).click();
+	}
 	
-	public void clickonviewdetailslistingbutton(int value)
+	public void clickonviewdetailslistingbutton(int value) throws InterruptedException
 	{
 		 for(int i = 0; i< viewdetailsbutton.size(); i++)
 		   {
+			 Thread.sleep(500);
 			 viewdetailsbutton.get(value).click();
 			   break;
 		   }

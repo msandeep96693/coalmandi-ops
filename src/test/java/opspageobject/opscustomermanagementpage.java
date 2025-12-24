@@ -153,6 +153,18 @@ public class opscustomermanagementpage extends opsBasicpage {
 		waitforElement(activitiessubbtn);
 		javascriptclick(activitiessubbtn);
 		
+		waitforElement(searchtextfield);
+		searchtextfield.sendKeys(searchbycontactname);
+		
+		Thread.sleep(2000);
+		
+		for(WebElement complete:cardInComplete)
+		{
+//			Thread.sleep(500);
+			String Businessdata = complete.getText();
+			System.out.println("Business data :- "+ Businessdata);
+		}
+		
 		Thread.sleep(1000);
 		waitforElement(fromdate);
 		fromdate.sendKeys(currentdatefetch());
@@ -161,31 +173,26 @@ public class opscustomermanagementpage extends opsBasicpage {
 		waitforElement(todate);
 		todate.sendKeys("12 January 2026");
 		
+		waitforElement(searchtextfield);
+		searchtextfield.click();
+		
 //		Robot rt = new Robot();
 //		rt.keyPress(KeyEvent.VK_ENTER);
 //		rt.keyRelease(KeyEvent.VK_ENTER);
 		
-		Thread.sleep(500);
-		Actions act = new Actions(driver);
-		act.sendKeys(Keys.ESCAPE);
+//		Thread.sleep(500);
+//		Actions act = new Actions(driver);
+//		act.sendKeys(Keys.ESCAPE);
 		
+		Thread.sleep(1500);
 		for(WebElement complete:cardInComplete)
 		{
-			Thread.sleep(2000);
+			Thread.sleep(500);
 			String Businessdata = complete.getText();
 			System.out.println("Business data :- "+ Businessdata);
 		}
 		
-		waitforElement(searchtextfield);
-		searchtextfield.sendKeys(searchbycontactname);
 		
-		Thread.sleep(2000);
-		
-		for(WebElement complete:cardInComplete)
-		{
-			String Businessdata = complete.getText();
-			System.out.println("Business data :- "+ Businessdata);
-		}
 		
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
@@ -426,11 +433,6 @@ public class opscustomermanagementpage extends opsBasicpage {
 		}
 	
 	
-	
-	
-	
-	
-	
 	public void ClickOnApprovalFiles(int value)
 	{
 		   for(int i = 0; i< viewButton.size(); i++)
@@ -477,25 +479,6 @@ public class opscustomermanagementpage extends opsBasicpage {
 	        return null;
 	    }
 	}
-
-//	public void clickOnCard(String card, String action) throws InterruptedException {
-//	    WebElement element = getCardElement(card, action);
-//
-//	    if (element != null) {
-//	        try {
-//	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-//	            wait.until(ExpectedConditions.elementToBeClickable(element));
-//	            javascriptclick(element);
-//	            System.out.println("Clicked: " + card + " -> " + action + " ✅");
-//	        } catch (Exception ex) {
-//	            System.out.println("Click failed for: " + card + " -> " + action + " ⛔");
-//	        }
-//	    } else {
-//	        System.out.println("Skipping: " + card + " -> " + action + " ❌");
-//	    }
-//	    
-//	    Thread.sleep(2000); // Give UI time to update
-//	}
 	
 	
 	public void clickOnCard(String card, String action) throws InterruptedException {
@@ -555,7 +538,6 @@ public class opscustomermanagementpage extends opsBasicpage {
 	        case "order": javascriptclick(btnsSideBar.get(4)); break;
 	        case "team": javascriptclick(btnsSideBar.get(5)); break;
 	        case "vendor": javascriptclick(btnsSideBar.get(6)); break;
-	        
 	        case "transporter": javascriptclick(btnsSideBar.get(7)); break;
 	        case "ticket": javascriptclick(btnsSideBar.get(8)); break;
 	        case "reports": javascriptclick(btnsSideBar.get(9)); break;

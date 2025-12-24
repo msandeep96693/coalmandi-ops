@@ -310,8 +310,22 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "//span[.='Create Account']")
 		private WebElement createaccountbtn;
 		
+		@FindBy(xpath = "//input[@placeholder='Search by Full Name, Email']")
+		private WebElement searchtextfield;
+		
+		@FindBy(xpath = "//tbody[@class='ant-table-tbody']/tr/td/span")
+		private List<WebElement> listoftransporterdata;
+		
+		@FindBy(xpath = "//span[@class='text-sm font-medium text-white']/..")
+		private WebElement opsmanagerprofileicon;
+		
+		@FindBy(xpath = "//button[.='Logout']")
+		private WebElement opslogout;
+		
+		
+		
 		public void Transportercreatebbusinessprofile(
-				 String email, String pwd,  String transportname, String mobilenumber,
+				 String email, String pwd,  String sidebartransportname, String mobilenumber,
 				 String createpassword, String confirmpassword,  String gstnumber,  
 				 String designation,String ifsccode, String accountno, String confirmaccountno, 
 				 String udyamno, String udyamdateno,
@@ -324,7 +338,7 @@ import org.testng.annotations.Test;
 //			createaccountpage account = new createaccountpage(driver);
 //			account.createbusinessaccount(mobilenumber, createpassword, confirmpassword);
 			
-			ClickAction(transportname);
+			ClickAction(sidebartransportname);
 			
 			waitforElement(addtransportbtn);
 			javascriptclick(addtransportbtn);
@@ -662,10 +676,36 @@ import org.testng.annotations.Test;
 			
 			Thread.sleep(1000);
 			
-			System.out.println("Business profile created and your Your KYC documents are being reviewed.");
+			System.out.println("Business profile created and Your KYC documents are being reviewed.");
 			
 		
 	}
+		
+		public void transportermanagementlistpage(String email, String pwd,  String sidebartransportname   
+				) throws InterruptedException, AWTException  
+		{ 
+			opssigninpage opssign = new opssigninpage(driver);
+			opssign.opssigninpage(email, pwd); 
+			
+			ClickAction(sidebartransportname);
+			
+			waitforElement(searchtextfield);
+			searchtextfield.sendKeys("sandeep");
+			
+			for(int i =0; i < listoftransporterdata.size(); i++)
+			{
+				System.out.println("Transporter list data :- "+ listoftransporterdata.get(i).getText()); 
+				break;
+			}
+			
+			Thread.sleep(1500);
+			waitforElement(opsmanagerprofileicon);
+			javascriptclick(opsmanagerprofileicon);
+			
+			waitforElement(opslogout);
+			javascriptclick(opslogout);
+			
+		}
 
 		
 		public void kycdocuploadandsubmit(String labelnames, List<WebElement> uploadFiles, List<WebElement> submitButtons) throws InterruptedException 

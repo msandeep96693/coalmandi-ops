@@ -8,14 +8,15 @@ import opspageobject.opscustomermanagementpage;
 
 public class opscustomermanagementExecutionclass extends opsBaseclass {
 	
-	@Test(priority = 0, enabled = true)
+	// working
+	@Test(priority = 0, enabled = false)
 	public void opscustomermgmtactivitylistpage() throws AWTException, InterruptedException
 	{
 		opscustomermanagementpage activity = new opscustomermanagementpage(driver);
 		activity.opscustomermanagementactivitylist(prop.getProperty("opsadminemail"),prop.getProperty("password"),
 				prop.getProperty("sidebarcustmgmtname"),prop.getProperty("searchbycontactname"));
 	}
-	
+		
 	// working
 	@Test(priority = 0, enabled = false)
 	public void customermanagementapprovalflow() throws InterruptedException
@@ -24,6 +25,7 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 		customer.customermanagementactivitypage(prop.getProperty("opsemail"), prop.getProperty("password"), 
 				prop.getProperty("sidebarcustmgmtname"));
 	}
+	
 	
 	@Test(priority = 0, enabled = false)
 	public void customermanagementopsexecutiveapprovalflow() throws InterruptedException
@@ -43,15 +45,12 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 	
 	
 	
-	@Test(priority = 2, enabled = false) 
+	@Test(priority = 2, enabled = false)
 	public void customermanagementrequesttorejectflow() throws InterruptedException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
 		customer.customermanagementrequesttorejectactionpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
 				prop.getProperty("approvedoverridetext"));
 	}
-	
-	
-	
 	
 }

@@ -76,6 +76,36 @@ public class opsticketmanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//span[.='Close Ticket']")
 	private WebElement closeticketbutton;
 	
+	
+	public void ticketmanagementlistpage(String opsemail, String pwd, String sidebarticketname,
+			String ticketstatusoptionnameclosed) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(opsemail, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidebarticketname);
+//		executiveClickAction(sidebarticketname);
+		Thread.sleep(1000);
+		
+		waitforElement(allstatusdropdown);
+		allstatusdropdown.click();
+		
+		selectDropdownOption(statusoptions, ticketstatusoptionnameclosed);
+		
+		Thread.sleep(2000);
+		statusnameinlist.get(0).click();
+		
+		Thread.sleep(2000);
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+		
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+		
+	}
+	
+	// mark as inprogress and escalate to admin
 	public void ticketmanagementaction(String opsemail, String pwd, String sidebarticketname,
 			String ticketstatusoptionnameopen) throws InterruptedException
 	{

@@ -3,6 +3,7 @@ package opspageobject;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,7 +40,7 @@ public class opsteammanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//span[.='Create Team Member']/..")
 	private WebElement clickoncreateteammemberbtn; 
 	
-	@FindBy(xpath = "//div[@class='flex items-start justify-between mb-4']")
+	@FindBy(xpath = "//tbody[@class='ant-table-tbody']/tr/td/span")
 	private List<WebElement> teammemberlistdata;
 	
 	@FindBy(xpath = "//div[@class='ant-notification-notice-message']/..")
@@ -51,7 +52,7 @@ public class opsteammanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//button[.='Logout']")
 	private WebElement opslogout;
 	
-	@FindBy(xpath = "//span[.='View Details']/..")
+	@FindBy(xpath = "//button[.='View']")
 	private List<WebElement> viewdetailsbuttons;
 	
 	// Edit ops team member
@@ -73,25 +74,53 @@ public class opsteammanagementpage extends opsBasicpage {
 	@FindBy(xpath = "//input[@type='search']")
 	private List<WebElement> searchandfilterfield;
 	
-	@FindBy(xpath = "//span[@title='All Status']")
+	@FindBy(xpath = "//span[.='All Status']")
 	private WebElement allstatusfilter;
 	
-	@FindBy(xpath = "//div[@class='ant-select-item-option-content']/..")
+	@FindBy(xpath = "//div[@class='ant-select-item ant-select-item-option']")
 	private List<WebElement> statusdropdownoptions;
 	
 	@FindBy(xpath = "//div[@class='space-y-3 mb-4']")
 	private List<WebElement> teammembersearchlistdata;
 	
+	public void listteammanagement(String email, String pwd, String sidebarteamname, 
+			String emailsearchdata, String optionname) throws InterruptedException
+	{
+		opssigninpage opssign = new opssigninpage(driver);
+		opssign.opssigninpage(email, pwd);
+		
+		// select the left nav bar features by name
+		ClickAction(sidebarteamname);
+		Thread.sleep(1000);
+		
+		// search a textfield
+		waitforElement(searchtextfield);
+		searchtextfield.sendKeys(emailsearchdata);
+		Thread.sleep(4000);
+		
+		waitforElement(allstatusfilter);
+		allstatusfilter.click();
+		
+//		All status dropdown
+		statusdropdownoptions.get(0).click();
+//		selectDropdownOption(statusdropdownoptions, optionname);
+			
+				
+		waitforElement(opsmanagerprofileicon);
+		javascriptclick(opsmanagerprofileicon);
+				
+		waitforElement(opslogout);
+		javascriptclick(opslogout);
+	}
 	
-	
-	public void opscreateteammanagement(String email, String pwd, String sidebarfeaturename
+	public void opscreateteammanagement(String email, String pwd, String sidebarteamname
 			 ) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
 		
 		// select the left nav bar features by name
-		ClickAction(sidebarfeaturename);
+		ClickAction(sidebarteamname);
 		Thread.sleep(1000);
 		
 		// click on add team member button
@@ -120,13 +149,13 @@ public class opsteammanagementpage extends opsBasicpage {
 		String confirmationmsg = successconfirmationmessage.getText();
 		System.out.println("Created confirmation message :- "+ confirmationmsg);
 		
-		// cross check the created team member
-		for(int i = 0; i<=teammemberlistdata.size(); i++)
-		{
-				String executivedata = teammemberlistdata.get(0).getText().trim();
-				System.out.println("Executive data :- "+ executivedata);
-				break;
-		}
+//		// cross check the created team member
+//		for(int i = 0; i<=teammemberlistdata.size(); i++)
+//		{
+//			String executivedata = teammemberlistdata.get(0).getText().trim();
+//			System.out.println("Executive data :- "+ executivedata);
+//			break;
+//		}
 		
 		// click on view details button
 		for(int i = 0; i<= viewdetailsbuttons.size(); i++)
@@ -138,6 +167,7 @@ public class opsteammanagementpage extends opsBasicpage {
 		String teamdetailspage = driver.getCurrentUrl();
 		System.out.println("Team Details page :- "+ teamdetailspage);
 		
+		Thread.sleep(1500);
 		waitforElement(opsmanagerprofileicon);
 		javascriptclick(opsmanagerprofileicon);
 		
@@ -147,19 +177,20 @@ public class opsteammanagementpage extends opsBasicpage {
 		
 	}
 	
-	public void opsupdateteammember(String email, String pwd, String sidebarfeaturename
+	public void opsupdateteammember(String email, String pwd, String sidebarteamname
 			) throws InterruptedException
 	{
 		opssigninpage opssign = new opssigninpage(driver);
 		opssign.opssigninpage(email, pwd);
 		
 		// select the left nav bar features by name
-		ClickAction(sidebarfeaturename);
+		ClickAction(sidebarteamname);
 		Thread.sleep(1000);
 		
 		// click on view details button
 				for(int i = 0; i<= viewdetailsbuttons.size(); i++)
 				{
+					Thread.sleep(500);
 					viewdetailsbuttons.get(0).click();
 					break;
 				}
@@ -174,13 +205,15 @@ public class opsteammanagementpage extends opsBasicpage {
 				
 				// enter a full name
 				waitforElement(enterfullnamefield);
-				enterfullnamefield.clear();
+				enterfullnamefield.sendKeys(Keys.CONTROL + "A");
+				enterfullnamefield.sendKeys(Keys.DELETE);
 				Thread.sleep(500);
 				enterfullnamefield.sendKeys(setRandomName());
 				
 				// enter a phone number
 				waitforElement(enterphonenumberfield);
-				enterphonenumberfield.clear();
+				enterphonenumberfield.sendKeys(Keys.CONTROL + "A");
+				enterphonenumberfield.sendKeys(Keys.DELETE);
 				Thread.sleep(500);
 				enterphonenumberfield.sendKeys(setRandomMobileNumber());
 				
@@ -209,50 +242,7 @@ public class opsteammanagementpage extends opsBasicpage {
 	}
 	
 	
-	public void listteammanagement(String email, String pwd, String sidebarfeaturename, 
-			String emailsearchdata, String optionname) throws InterruptedException
-	{
-		opssigninpage opssign = new opssigninpage(driver);
-		opssign.opssigninpage(email, pwd);
-		
-		// select the left nav bar features by name
-		ClickAction(sidebarfeaturename);
-		Thread.sleep(1000);
-		
-		// search a textfield
-		waitforElement(searchtextfield);
-		searchtextfield.sendKeys(emailsearchdata);
-		Thread.sleep(4000);
-		
-		// Fetch list of data based on search data
-		for(int i = 0; i<=teammembersearchlistdata.size(); i++)
-		{
-				String executivedata = teammembersearchlistdata.get(i).getText().trim();
-				System.out.println("Executive data :- "+ executivedata);
-				break;
-		}
-		
-		
-		waitforElement(allstatusfilter);
-		allstatusfilter.click();
-		
-//		All status dropdown
-		selectDropdownOption(statusdropdownoptions, optionname);
-		
-		// Fetch list of data based on search data
-				for(int i = 0; i<=teammembersearchlistdata.size(); i++)
-				{
-						String executivedata = teammembersearchlistdata.get(i).getText().trim();
-						System.out.println("Executive data :- "+ executivedata);
-						break;
-				}	
-				
-				waitforElement(opsmanagerprofileicon);
-				javascriptclick(opsmanagerprofileicon);
-				
-				waitforElement(opslogout);
-				javascriptclick(opslogout);
-	}
+	
 	
 	
 	public void ClickAction(String btn) {

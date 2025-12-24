@@ -9,15 +9,14 @@ import opspageobject.opslistingmanagementpage;
 
 public class opslistingmanagementExecutionclass extends opsBaseclass {
 	
+	//working
 	@Test(priority = 0, enabled = true)
-	public void listingmanagementlist()
+	public void listingmanagementlist() throws InterruptedException
 	{
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
-		list.listingmanagementlistpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
+		list.listingmanagementlistpage(prop.getProperty("opsadminemail"), prop.getProperty("password"), 
 				prop.getProperty("sidebarlistingname"), prop.getProperty("searchbybusinessname"));
-		
 	}
-	
 	
 	// working
 	@Test(priority = 1, enabled = false)
@@ -26,7 +25,6 @@ public class opslistingmanagementExecutionclass extends opsBaseclass {
 		opslistingmanagementpage list = new opslistingmanagementpage(driver);
 		list.listingmanagementapprovalpage(prop.getProperty("opsemail"), prop.getProperty("password"), 
 				prop.getProperty("sidebarlistingname"));
-		
 	}
 	
 	// working

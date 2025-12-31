@@ -214,7 +214,7 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "(//span[.='Yes']/..)[2]")
 		private WebElement udyamyesradiobutton;
 		
-		@FindBy(xpath = "(//input[@type='text'])[8]")
+		@FindBy(xpath = "//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[7]/form/div/div[2]/div[2]/div/div[2]/div/div/input")
 		private WebElement udyamnotextfield;
 		
 		@FindBy(xpath = "(//span[@aria-label='calendar']/../..)[1]")
@@ -229,7 +229,7 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "(//span[.='Yes']/..)[3]")
 		private WebElement iecyesradiobutton;
 		
-		@FindBy(xpath = "(//input[@type='text'])[9]")
+		@FindBy(xpath = "//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[8]/form/div/div[2]/div[2]/div/div[2]/div/div/input")
 		private WebElement iecnotextfield;
 		
 		@FindBy(xpath = "(//span[@aria-label='calendar']/../..)[2]")

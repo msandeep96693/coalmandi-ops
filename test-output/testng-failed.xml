@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass">
+      <class name="opsTestcaseExecution.TransportercreatebusinessprofileExecutionclass">
         <methods>
+          <include name="TransportercreatebusinessprofileExecutionclass"/>
           <include name="setup"/>
-          <include name="ticketlistpage"/>
           <include name="tear"/>
         </methods>
-      </class> <!-- opsTestcaseExecution.opsticketmanagementcloseticketExecutionclass -->
+      </class> <!-- opsTestcaseExecution.TransportercreatebusinessprofileExecutionclass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

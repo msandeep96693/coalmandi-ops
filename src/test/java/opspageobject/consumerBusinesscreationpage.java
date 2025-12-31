@@ -8,7 +8,6 @@ import java.beans.DesignMode;
 import java.time.Duration;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Random;
 import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
@@ -25,9 +24,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-	public class opstransporterBusinesscreationpage extends opsBasicpage {
+	public class consumerBusinesscreationpage extends opsBasicpage {
 
-		public opstransporterBusinesscreationpage(WebDriver driver)
+		public consumerBusinesscreationpage(WebDriver driver)
 		{
 			super(driver);
 		}
@@ -50,7 +49,7 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "(//input[@type='text'])[2]")
 		private WebElement gstnumberfield;
 		
-		@FindBy(xpath = "//span[.='Verify GST']") // /html/body/div[1]/div/div/div[2]/div/div/div[3]/div/form/div[3]/div/button/span
+		@FindBy(xpath = "//span[.='Verify GST']")
 		private WebElement verifygstbutton;
 		
 		@FindBy(xpath = "//div[@class='ant-select-item ant-select-item-option']")
@@ -78,19 +77,20 @@ import org.testng.annotations.Test;
 		
 		
 		
-		@FindBy(xpath = "(//input[@type='text'])[7]")
+		@FindBy(xpath = "(//input[@type='text'])[5]")
 		private WebElement contactnamefield;
 		
-		@FindBy(xpath = "(//input[@type='text'])[8]")
+		@FindBy(xpath = "(//input[@type='text'])[6]")
 		private WebElement desginationfield;
+		
+		@FindBy(xpath = "(//input[@type='text'])[7]")
+		private WebElement aadharnumberfield;
 		
 		@FindBy(xpath = "//input[@type='email']")
 		private WebElement emailfield;
 		
-		@FindBy(xpath = "(//input[@type='text'])[9]")
+		@FindBy(xpath = "(//input[@type='text'])[8]")
 		private WebElement mobilenumberfield;
-		
-		
 		
 		@FindBy(xpath = "(//input[@type='search'])[3]")
 		private WebElement onwershipdropdown;
@@ -107,12 +107,17 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "(//div[@class='ant-select-selector'])[5]")  // (//input[@type='search'])[5]
 		private WebElement producttotradedropdown;
 		
+		@FindBy(xpath = "//div[@class='ant-select-item-option-content']")
+		private List<WebElement> alldropdownoption;
+		
 		@FindBy(xpath = "//div[.='PET Coke']") 
 		private WebElement petcokeoption;
 		
 		@FindBy(xpath = "//div[@title='Coking Coal (HSN - 27011910)']/div")  // //div[.='Coking Coal']
 		private WebElement cokingcoaloption;
-	
+		
+		@FindBy(xpath = "//div[.='Thermal Coal']")
+		private WebElement thermalcoaloption;
 		
 		@FindBy(xpath = "//div[.='Metallurgical Coal (HSN - 27011910)']")
 		private WebElement metallurgicalcoaloption;
@@ -120,30 +125,16 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "(//div[@class='ant-select-selection-overflow'])[2]")
 		private WebElement originofcoaldropdown;
 		
-		
-		
 		@FindBy(xpath = "(//div[@class='ant-select-selection-overflow'])[3]")
-		private WebElement portsofoperationdropdown;
+		private WebElement sourceofcoaldropdown;
 		
-		@FindBy(xpath = "//div[@class='ant-select-item-option-content']")
-		private List<WebElement> alldropdownoption;
+		
 		
 		@FindBy(xpath = "//div[.='Domestic']") 
 		private WebElement domesticoption;  
 		
 		@FindBy(xpath = "//div[.='International']")
 		private WebElement internationaloption;
-		
-		@FindBy(xpath = "//div[.='Thermal Coal (HSN - 27011920)']")
-		private WebElement thermalcoaloption;
-		
-		@FindBy(xpath = "//div[.='Private Mines']")
-		private WebElement privateminesoption;
-		
-		@FindBy(xpath = "//div[.='CIL']")
-		private WebElement CILoption;
-		
-		
 		
 		@FindBy(xpath = "//button[@type='submit']")
 		private WebElement saveandproceedbutton;
@@ -207,10 +198,9 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "//input[@type='password']")
 		private WebElement accountnotextfield;
 		
-		@FindBy(xpath = "//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[6]/form/div/div[2]/div[5]/div/div[2]/div/div/input")
+		@FindBy(xpath = "(//input[@type='number'])[1]")
 		private WebElement confirmaccountnotextfield;
-		// (//input[@type='text'])[7]
-		//*[@id="root"]/div/div/div[2]/div/div/div[3]/div[6]/form/div/div[2]/div[5]/div/div[2]/div/div/input
+			
 		@FindBy(xpath = "(//span[.='Yes']/..)[2]")
 		private WebElement udyamyesradiobutton;
 		
@@ -238,7 +228,7 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "(//input[@type='number'])[2]")
 		private WebElement DnBnotextfield;
 		
-		@FindBy(xpath = "//button[.='Save & Prdomesticoptionoceed']")
+		@FindBy(xpath = "//button[.='Save & Proceed']")
 		private WebElement saveproceedbuton;
 		
 		@FindBy(xpath = "//span[.='Confirm info correctness']")
@@ -250,26 +240,10 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "//button[.='Submit for Verification']")
 		private WebElement submitforverification;
 
-		@FindBy(xpath = "//span[.='Is Same as domesticoptionBusiness Owner ?']")
+		@FindBy(xpath = "//span[.='Is Same as Business Owner ?']")
 		private WebElement Issameasbusinessownercheckbox;
 		
-		//Transporter xpath
 		
-		@FindBy(xpath = "//button[.='Add Transporter']")
-		private WebElement addtransportbtn;
-
-		@FindBy(xpath = "(//span[@class='ant-select-selection-wrap'])[7]")
-		private WebElement sourceofcoaldropdown;
-//		(//span[@class='ant-select-selection-wrap'])[7]
-//				(//div[@class='ant-select-selector'])[7]
-		@FindBy(xpath = "(//input[@type='text'])[11]")
-		private WebElement licensenumberfield;
-		
-		@FindBy(xpath = "//input[@placeholder='Enter vehicle number']")
-		private WebElement vehiclenumberfield;
-		
-		@FindBy(xpath = "//input[@placeholder='Enter capacity']")
-		private WebElement vehiclecapacityfield;
 		
 		// kyc page
 		
@@ -279,6 +253,7 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "(//input[@type='file'])[2]")
 		private WebElement pancarduploadfile;
 		
+		// setting 
 		@FindBy(xpath = "//span[@aria-label='user']") 
 		private WebElement profileicon;
 		
@@ -291,7 +266,17 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "//button[.='Add Business Profile']")
 		private WebElement addbusinessprofilebtn;
 		
-		// transport account creation xpathdomesticoption
+		
+		
+		@FindBy(xpath = "(//span[@class='ant-select-selection-item'])[2]")
+		private WebElement districtfield;
+		
+		@FindBy(xpath = "(//input[@type='search'])[2]")
+		private WebElement districtsearchfield;
+		
+		@FindBy(xpath = "//button[.='Add Transporter']")
+		private WebElement addtransportbtn;
+		
 		@FindBy(xpath = "(//input[@type='text'])[1]") 
 		private WebElement fullnametextfield;
 
@@ -308,12 +293,6 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "//button[@type='submit']/span")
 		private WebElement sendotpbutton;
 
-		@FindBy(xpath = "//*[@id='root']/div[2]/div/div/form/div[1]/div[2]/div/div/div/div/div/div/input")
-		private List<WebElement> whatsappotpinputfield;
-		
-		@FindBy(xpath = "//*[@id='root']/div[2]/div/div/form/div[2]/div[2]/div/div/div/div/div/div/input")
-		private List<WebElement> emailotpinputfield;
-		
 		@FindBy(xpath = "(//input[@type='password'])[1]")
 		private WebElement enterpassword;
 		
@@ -323,28 +302,25 @@ import org.testng.annotations.Test;
 		@FindBy(xpath = "//span[.='Create Account']")
 		private WebElement createaccountbtn;
 		
-		@FindBy(xpath = "//input[@placeholder='Search by Full Name, Email']")
-		private WebElement searchtextfield;
+		@FindBy(xpath = "//input[@placeholder='Enter vehicle number']")
+		private WebElement vehiclenumberfield;
 		
-		@FindBy(xpath = "//tbody[@class='ant-table-tbody']/tr/td/span")
-		private List<WebElement> listoftransporterdata;
+		@FindBy(xpath = "//input[@placeholder='Enter capacity']")
+		private WebElement vehiclecapacityfield;
 		
-		@FindBy(xpath = "//span[@class='text-sm font-medium text-white']/..")
-		private WebElement opsmanagerprofileicon;
+		@FindBy(xpath = "(//input[@type='text'])[11]")
+		private WebElement licensenumberfield;
 		
-		@FindBy(xpath = "//button[.='Logout']")
-		private WebElement opslogout;
-		
-		
-		
+		@Test
 		public void Transportercreatebbusinessprofile(
 				 String email, String pwd,  String sidebartransportname, String mobilenumber,
 				 String createpassword, String confirmpassword,  String gstnumber,  
 				 String designation,String ifsccode, String accountno, String confirmaccountno, 
 				 String udyamno, String udyamdateno,
 				String iecdateno, String licensenumber  
-				) throws InterruptedException, AWTException  
+				) throws InterruptedException, AWTException
 		{ 
+			
 			opssigninpage opssign = new opssigninpage(driver);
 			opssign.opssigninpage(email, pwd); 
 						
@@ -400,9 +376,10 @@ import org.testng.annotations.Test;
 			waitforElement(btnCreateBusinessProfile);
 			javascriptclick(btnCreateBusinessProfile);
 			
+			
 			// upload a business profile image
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 				JavascriptExecutor js = (JavascriptExecutor) driver;
 				js.executeScript("arguments[0].style.display='block';", uploadProfile);
 				uploadProfile.sendKeys("/home/active34/Downloads/photos /QA club photos/Club 7.png");
@@ -420,7 +397,7 @@ import org.testng.annotations.Test;
 			// Enter GST number 
 			waitforElement(gstnumberfield);
 			gstnumberfield.sendKeys(gstnumber);
-			String GSTnumber = gstnumberfield.getText();
+//			String GSTnumber = gstnumberfield.getText();
 			
 			// enter gst verify button
 			waitforElement(verifygstbutton);
@@ -428,6 +405,22 @@ import org.testng.annotations.Test;
 	
 			Thread.sleep(3000);
 			
+			 JavascriptExecutor js1 = (JavascriptExecutor) driver;
+//	            js.executeScript("arguments[0].style.display='block';", uploadInput);
+			 js1.executeScript("arguments[0].scrollIntoView({block: 'center'});", districtsearchfield);
+			Thread.sleep(1000);
+			 
+//			waitforElement(districtsearchfield);
+//			districtfield.click(); 
+//			
+//			waitforElement(districtsearchfield);
+//			districtsearchfield.sendKeys("Anantapur");
+//			
+//			Thread.sleep(500);
+//			Actions action = new Actions(driver);
+//			action.sendKeys(Keys.ENTER).perform();
+			
+			Thread.sleep(1000);
 			// ownership 
 			waitforElement(onwershipdropdown);
 			onwershipdropdown.click();
@@ -439,81 +432,49 @@ import org.testng.annotations.Test;
 			waitforElement(industrydropdown);
 			industrydropdown.click();
 			
-			waitforElement(brickkilnoption);
-			javascriptclick(brickkilnoption);
-			
-//			Thread.sleep(1000);
-//			selectDropdownOption(alldropdownoption, "cement");			
+			Thread.sleep(1000);
+			selectDropdownOption(alldropdownoption, "Brick Kilns");	
 			
 			// product to trade
 			waitforElement(producttotradedropdown);
 			producttotradedropdown.click();
 			
-			waitforElement(thermalcoaloption);
-			javascriptclick(thermalcoaloption);
-//			
-//		 	List<WebElement> options = driver.findElements(By.xpath("//div[@class='ant-select-item ant-select-item-option']"));
-//			options.get(0).click();
-//			Thread.sleep(1000);
-//			options.get(1).click();
-//		 	
-////			Thread.sleep(1000);
-////			javascriptclick(alldropdownoption.get(0));
-////			Thread.sleep(1000);
-////			javascriptclick(alldropdownoption.get(1));
-//			
-////			Thread.sleep(1000);
-////			selectDropdownOption(alldropdownoption, "Metallurgical");
-////			Thread.sleep(1000);
-////			selectDropdownOption(alldropdownoption, "Thermal");
-//			
-//			Thread.sleep(1000);
+			Thread.sleep(1000);
+			selectDropdownOption(alldropdownoption, "Metallurgical");
+			Thread.sleep(1000);
+			selectDropdownOption(alldropdownoption, "Thermal");
+			
+			Thread.sleep(1000);
 			Robot rob=new Robot();
-//			rob.keyPress(KeyEvent.VK_ESCAPE);
-//			rob.keyRelease(KeyEvent.VK_ESCAPE);
-//			
-//			Hiddenelement(originofcoaldropdown);
-//			
+			rob.keyPress(KeyEvent.VK_ESCAPE);
+			rob.keyRelease(KeyEvent.VK_ESCAPE);
+						
+			Hiddenelement(originofcoaldropdown);
+			
 			// origin of coal
+			
 			waitforElement(originofcoaldropdown);
 			originofcoaldropdown.click();
 			
-			waitforElement(domesticoption);
-			javascriptclick(domesticoption);
-			Thread.sleep(500);
-			waitforElement(internationaloption);
-			javascriptclick(internationaloption);
-			
-//			Thread.sleep(1000);
-//			selectDropdownOption(alldropdownoption, "Domestic");
-////			javascriptclick(alldropdownoption.get(4));
-//			Thread.sleep(1000);
-//			selectDropdownOption(alldropdownoption, "International");
-////			javascriptclick(alldropdownoption.get(5));
+			Thread.sleep(1000);
+			selectDropdownOption(alldropdownoption, "Domestic");
+			Thread.sleep(1000);
+			selectDropdownOption(alldropdownoption, "International");
 			
 			Robot rob1=new Robot();
 			rob1.keyPress(KeyEvent.VK_ESCAPE);
 			rob1.keyRelease(KeyEvent.VK_ESCAPE);
-//			
-			Thread.sleep(2000);
-			// Source of coal
+			
+			// source of coal
 			waitforElement(sourceofcoaldropdown);
 			sourceofcoaldropdown.click();
 			
-			Thread.sleep(500);
-			waitforElement(privateminesoption);
-			javascriptclick(privateminesoption);
+			Thread.sleep(1000);
+			selectDropdownOption(alldropdownoption, "Russian");
+			Thread.sleep(1000);
+			selectDropdownOption(alldropdownoption, "CIL");
 			
-			Thread.sleep(500);
-			waitforElement(CILoption);
-			javascriptclick(CILoption);
-						
-//			Thread.sleep(1000);
-//			selectDropdownOption(alldropdownoption, "Private");
-//			Thread.sleep(1500);
-//			selectDropdownOption(alldropdownoption, "CIL");
-					
-			rob.keyPress(KeyEvent.VK_ESCAPE);
+			rob1.keyPress(KeyEvent.VK_ESCAPE);
 			rob1.keyRelease(KeyEvent.VK_ESCAPE);
 			
 			waitforElement(vehiclenumberfield);
@@ -521,7 +482,6 @@ import org.testng.annotations.Test;
 			
 			waitforElement(vehiclecapacityfield);
 			vehiclecapacityfield.sendKeys("100");
-
 			
 			// Is same as business owner
 //			waitforElement(Issameasbusinessownercheckbox);
@@ -537,9 +497,12 @@ import org.testng.annotations.Test;
 			waitforElement(desginationfield);
 			desginationfield.sendKeys(designation);
 			
+//			waitforElement(aadharnumberfield);
+//			aadharnumberfield.sendKeys(aadharnumber);
+			
 			// enter email 
-			waitforElement(emailfield);
-			emailfield.sendKeys(setRandomEmail());
+			waitforElement(emailfield); 
+			emailfield.sendKeys(setRandomEmail()); 
 			
 			// enter contact number
 			waitforElement(mobilenumberfield);
@@ -556,9 +519,6 @@ import org.testng.annotations.Test;
 			System.out.println(Reviewurl);
 			
 			Thread.sleep(2000);
-			
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", proceedtokycbutton);
 			
 			// click on proceed to kyc button
 			waitforElement(proceedtokycbutton);
@@ -577,6 +537,7 @@ import org.testng.annotations.Test;
 			Thread.sleep(1500);
 			
 			// GST Certificate 
+			Thread.sleep(1500);
 			kycdocuploadandsubmit("GST Certificate", uploadFiles, submitButtons);
 			Thread.sleep(1500);
 			
@@ -586,7 +547,7 @@ import org.testng.annotations.Test;
 			
 			Thread.sleep(1000);
 			kycdocuploadandsubmit("TAN Certificate", uploadFiles, submitButtons);
-			Thread.sleep(3000);
+			Thread.sleep(1500);
 					
 			// LUT Certificate
 			
@@ -595,11 +556,12 @@ import org.testng.annotations.Test;
 
 			WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(radioBtn));
 
-//			// Scroll to element
-//			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-			
+			// Scroll to element
+			//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+			 JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 			
+			Thread.sleep(500);
 			waitforElement(LUTradioyesbutton);
 			LUTradioyesbutton.click();
 			
@@ -608,10 +570,11 @@ import org.testng.annotations.Test;
 			LUTnumbertextfield.sendKeys(setRandomMobileNumber());
 			
 			kycdocuploadandsubmit("LUT Certificate", uploadFiles, submitButtons);
-			Thread.sleep(2000);			
+			
+			
 			
 			// Bank Details
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			waitforElement(Ifsccodetextfield);
 			Ifsccodetextfield.clear();
 			Ifsccodetextfield.sendKeys(ifsccode);
@@ -660,9 +623,8 @@ import org.testng.annotations.Test;
 			// IEC certificate
 			
 			
-//			waitforElement(iecyesradiobutton);
-////			javascriptclick(iecyesradiobutton);
-//			iecyesradiobutton.click();
+			waitforElement(iecyesradiobutton);
+			iecyesradiobutton.click();
 			
 			Thread.sleep(1000);
 			waitforElement(iecnotextfield);
@@ -683,12 +645,36 @@ import org.testng.annotations.Test;
 			// Licence number
 			waitforElement(licensenumberfield);
 			licensenumberfield.sendKeys(licensenumber);
-			
+						
 			Thread.sleep(1000);
 			kycdocuploadandsubmit("License Document (Permit/RC)", uploadFiles, submitButtons);
 			Thread.sleep(1000);
 			
+			// D & B 
+			
+//			Thread.sleep(1000);
+//			waitforElement(DnBnotextfield);
+//			DnBnotextfield.sendKeys(DnBno);
+//			
+//			Thread.sleep(1000);
+//			kycdocuploadandsubmit("D&B", uploadFiles, submitButtons);
+			
 			scrollBottomofPage();
+			
+//			// upload again
+//			
+//			Thread.sleep(1000);
+//			kycdocuploadandsubmit("PAN Card", uploadFiles, submitButtons);
+//			Thread.sleep(1000);
+//			
+//			kycdocuploadandsubmit("GST Certificate", uploadFiles, submitButtons);
+//			Thread.sleep(1000);
+//			kycdocuploadandsubmit("TAN Certificate", uploadFiles, submitButtons);
+//			Thread.sleep(1000);
+//			kycdocuploadandsubmit("LUT Certificate", uploadFiles, submitButtons);
+//			Thread.sleep(1000);
+//			
+//			scrollBottomofPage();
 			
 			waitforElement(saveproceedbuton);
 			javascriptclick(saveproceedbuton);
@@ -707,40 +693,12 @@ import org.testng.annotations.Test;
 			waitforElement(submitforverification);
 			javascriptclick(submitforverification);
 			
-			Thread.sleep(1000);
-			
-			System.out.println("Business profile created and Your KYC documents are being reviewed.");
-			
-		
+			System.out.println("Business account is created and Your KYC documents are being reviewed.");
 	}
-		
-		public void transportermanagementlistpage(String email, String pwd,  String sidebartransportname   
-				) throws InterruptedException, AWTException  
-		{ 
-			opssigninpage opssign = new opssigninpage(driver);
-			opssign.opssigninpage(email, pwd); 
-			
-			ClickAction(sidebartransportname);
-			
-			waitforElement(searchtextfield);
-			searchtextfield.sendKeys("sandeep");
-			
-			for(int i =0; i < listoftransporterdata.size(); i++)
-			{
-				System.out.println("Transporter list data :- "+ listoftransporterdata.get(i).getText()); 
-				break;
-			}
-			
-			Thread.sleep(1500);
-			waitforElement(opsmanagerprofileicon);
-			javascriptclick(opsmanagerprofileicon);
-			
-			waitforElement(opslogout);
-			javascriptclick(opslogout);
-			
-		}
 
 		
+
+
 		public void kycdocuploadandsubmit(String labelnames, List<WebElement> uploadFiles, List<WebElement> submitButtons) throws InterruptedException 
 		{
 			
@@ -811,7 +769,6 @@ import org.testng.annotations.Test;
 		        }
 		    }
 		}
-		
 		public void ClickAction(String btn) {
 		    switch(btn.toLowerCase()) {
 		        case "dashboard": javascriptclick(btnsSideBar.get(0)); break;
@@ -852,4 +809,5 @@ import org.testng.annotations.Test;
 			// Now you are in the new tab and can interact with elements there
 			System.out.println("Switched to new tab: " + driver.getTitle());
 		}
+	
 }

@@ -45,7 +45,7 @@ public class opscustomermanagementExecutionclass extends opsBaseclass {
 	
 	
 	
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 2, enabled = true)
 	public void customermanagementrequesttorejectflow() throws InterruptedException
 	{
 		opscustomermanagementpage customer = new opscustomermanagementpage(driver);
